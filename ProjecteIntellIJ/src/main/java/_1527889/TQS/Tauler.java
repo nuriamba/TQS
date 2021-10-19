@@ -5,6 +5,7 @@ public class Tauler {
     public Tauler(){}
     public int getN(){}
     public int getM(){}
+    public void generateBombs(){}
     private boolean [][] matrix;
 
 }
