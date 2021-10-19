@@ -1,7 +1,9 @@
 package _1527889.TQS;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 //@SpringBootTest
 class PractiquesApplicationTests {
-
 	// Ideas:
 	// Test de un tauler que es una fila
 	// Test raco dels tauler
@@ -20,8 +21,8 @@ class PractiquesApplicationTests {
 
 	// Test del constructor, mira que las medidas sean las correctas
 	@ParameterizedTest
-	@ValueSource (ints = {n,m})
-	void TestCreaTauler(int[] dim){
+	@CsvSource(value = {"8,8","16,16","16,30"})
+	void TestCreaTauler(int n, int m){
 		Tauler t = new Tauler(n, m);
 
 		assertEquals(n, t.getN());
@@ -31,6 +32,7 @@ class PractiquesApplicationTests {
 	//En este testearemos la generacion de una matriz nxm con 1 i 0 distribuidos aleatoriamente.
 	// Aquí la idea és hacer un mock de la libreria random. Para "forzar" a que el aleatorio genere una matriz
 	// que nosotros queramos. Luego habra que hacer un assert entre la matriz que se genera i la que nos deberia dar (que es lo que hayamos puesto en el mock)
+
 	@Test
 	void TestGenerateBombs() {
 
