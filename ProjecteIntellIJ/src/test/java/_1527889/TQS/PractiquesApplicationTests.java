@@ -1,14 +1,9 @@
 package _1527889.TQS;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +16,7 @@ class PractiquesApplicationTests {
 
 	// Test del constructor, mira que las medidas sean las correctas
 	@ParameterizedTest
-	@CsvSource(value = {"1,0","8,8","16,16","16,30"})
+	@CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
 	void TestCreaTauler(int n, int m){
 		Tauler t = new Tauler(n, m);
 
@@ -29,22 +24,29 @@ class PractiquesApplicationTests {
 		assertEquals(m, t.getM());
 	}
 
+	@Test
+	void TestGetSetRand(){
+		Tauler t = new Tauler();
+		RandomMock mock = new RandomMock();
+		t.setRand(mock);
+		assertSame(mock, t.getRand());
+	}
+
 	//En este testearemos la generacion de una matriz nxm con 1 i 0 distribuidos aleatoriamente.
 	// Aquí la idea és hacer un mock de la libreria random. Para "forzar" a que el aleatorio genere una matriz
 	// que nosotros queramos. Luego habra que hacer un assert entre la matriz que se genera i la que nos deberia dar (que es lo que hayamos puesto en el mock)
 	@Test
 	void TestMatriz(){
-		Mock mockRandom=new Mock();
+		/*
+		RandomMock randomMockRandom =new RandomMock();
 
 		Tauler tauler=new Tauler();
+		tauler.setRand(randomMockRandom);
 
-		mockRandom.MockMatrizRandom(8,8, {{true,false,true},{true,false,true}});
+		boolean[][] mat1 = {{true,false,true,false,true,false,true,false},{true,false,true,false,true,false,true,false}, {true,false,true,false,true,false,true,false}, {true,false,true,false,true,false,true,false}};
 
-		PractiquesApplication pa= new PractiquesApplication();
-		pa.setRand(mockRandom);
-
-		pa.InicializaMatriz(8,8,{{true,false,true,false,true,false,true,false},{true,false,true,false,true,false,true,false}, {true,false,true,false,true,false,true,false}, {true,false,true,false,true,false,true,false}});
-		assertEquals({{true,false,true,false,true,false,true,false},{true,false,true,false,true,false,true,false}, {true,false,true,false,true,false,true,false}, {true,false,true,false,true,false,true,false}}, getTauler());
+		assertEquals(mat1, tauler.getMatrix());
+		*/
 	}
 
 

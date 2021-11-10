@@ -1,9 +1,8 @@
 package _1527889.TQS;
 
-public interface Random {
-    //su implementación interactura on la libreria Random
-
-    boolean[][] MatrizRandom(int n, int m,boolean [][] matriz);
-    void Actualitzar(boolean[][] tauler);
-
+public class Random implements IRandom{
+    @Override
+    public boolean[][] generateRandomMatrix(int n, int m) {
+        return new boolean[0][];
+    }
 }
