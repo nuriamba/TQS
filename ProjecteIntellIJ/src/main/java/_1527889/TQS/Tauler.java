@@ -7,7 +7,6 @@ public class Tauler {
     private static IRandom rand;
 
     public Tauler(int n, int m){i=n; j=m;}
-    public Tauler(){}
     public int getN(){return i;}
     public int getM(){return j;}
     public boolean[][] getMatrix() {
@@ -21,9 +20,11 @@ public class Tauler {
     }
 
     public void generateBombs(){
+
         matrix = rand.generateRandomMatrix(i,j);
     }
 
+    //Faltarà fer la recursivitat
     public int open(int n, int m){
         //asumim que els valors de n i m són correctes. Ho testejarà la vista
 
@@ -33,11 +34,12 @@ public class Tauler {
         int cont = 0;
         for(int k=n-1;k<n+2;k++){
             if(k>=i || k < 0)
-                break;
+                continue;
             for(int l=m-1;l<m+2;l++){
-                if(l>=i || l < 0)
-                    break;
-                cont++;
+                if(l>=j || l < 0)
+                    continue;
+                if(matrix[k][l])
+                    cont++;
             }
         }
         return cont;

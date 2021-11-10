@@ -20,7 +20,7 @@ public class TaulerTests {
 
     @Test
     void TestGetSetRand(){
-        Tauler t = new Tauler();
+        Tauler t = new Tauler(1,1);
         RandomMock mock = new RandomMock();
         t.setRand(mock);
         assertSame(mock, t.getRand());

@@ -9,7 +9,7 @@ public class ParamProvider {
         // Este ParamProvider crea varios tableros, de una dimension concreta pero sencillita i le genera las bombas
         RandomMock mock = new RandomMock();
         // Tauler 1
-        Tauler t1 = new Tauler();
+        Tauler t1 = new Tauler(3,3);
         t1.setRand(mock);
         boolean[][] mat1 = {{true,true,true},
                             {true,false,true},
@@ -20,7 +20,7 @@ public class ParamProvider {
 
 
         // Tauler 2
-        Tauler t2 = new Tauler();
+        Tauler t2 = new Tauler(4,4);
         t2.setRand(mock);
         boolean[][] mat2 = {{false,true,false,false},
                             {true,false,true,false},
@@ -31,7 +31,7 @@ public class ParamProvider {
         Quartet<Tauler, Integer, Integer, Integer> q2 = new Quartet<Tauler, Integer, Integer, Integer>(t2, 1,1, 4);
 
         // Tauler 3
-        Tauler t3 = new Tauler();
+        Tauler t3 = new Tauler(4,4);
         t3.setRand(mock);
         boolean[][] mat3 = {{false,false,false,false},
                             {false,false,false,false},
@@ -42,7 +42,7 @@ public class ParamProvider {
         Quartet<Tauler, Integer, Integer, Integer> q3 = new Quartet<Tauler, Integer, Integer, Integer>(t3, 2,2, 2);
 
         // Tauler 4
-        Tauler t4 = new Tauler();
+        Tauler t4 = new Tauler(4,4);
         t4.setRand(mock);
         boolean[][] mat4 = {{false,false,false,false},
                             {false,false,false,false},
@@ -50,7 +50,7 @@ public class ParamProvider {
                             {false,false,true,false}};
         mock.setReturnMatrix(mat4);
         t4.generateBombs();
-        Quartet<Tauler, Integer, Integer, Integer> q4 = new Quartet<Tauler, Integer, Integer, Integer>(t3, 2,2, -1);
+        Quartet<Tauler, Integer, Integer, Integer> q4 = new Quartet<Tauler, Integer, Integer, Integer>(t4, 2,2, -1);
 
         return Arrays.asList(q1,q2,q3,q4);
     }
@@ -67,7 +67,7 @@ public class ParamProvider {
         // Este ParamProvider crea varios tableros, de una dimension concreta pero sencillita i le genera las bombas
         RandomMock mock = new RandomMock();
         // Tauler 1 esquina superior izquierda
-        Tauler t1 = new Tauler();
+        Tauler t1 = new Tauler(3,3);
         t1.setRand(mock);
         boolean[][] mat1 = {{false,false,false},
                 {true,true,true},
@@ -78,7 +78,7 @@ public class ParamProvider {
 
 
         // Tauler 2 esquina inferior derecha
-        Tauler t2 = new Tauler();
+        Tauler t2 = new Tauler(3,3);
         t2.setRand(mock);
         boolean[][] mat2 = {{false,true,false},
                 {true,true,true},
@@ -88,7 +88,7 @@ public class ParamProvider {
         Quartet<Tauler, Integer, Integer, Integer> q2 = new Quartet<Tauler, Integer, Integer, Integer>(t2, 2,2, 3);
 
         // Tauler 3 esquina inferior izquierda
-        Tauler t3 = new Tauler();
+        Tauler t3 = new Tauler(3,3);
         t3.setRand(mock);
         boolean[][] mat3 = {{false,true,false},
                 {true,true,true},
@@ -98,7 +98,7 @@ public class ParamProvider {
         Quartet<Tauler, Integer, Integer, Integer> q3 = new Quartet<Tauler, Integer, Integer, Integer>(t3, 2,0, 3);
 
         // Tauler 4 esquina superior derecha
-        Tauler t4 = new Tauler();
+        Tauler t4 = new Tauler(3,3);
         t4.setRand(mock);
         boolean[][] mat4 = {{false,true,false},
                 {true,true,true},
@@ -108,7 +108,7 @@ public class ParamProvider {
         Quartet<Tauler, Integer, Integer, Integer> q4 = new Quartet<Tauler, Integer, Integer, Integer>(t4, 0,2, 3);
 
         // Tauler 5 esquina superior derecha + boom
-        Tauler t5 = new Tauler();
+        Tauler t5 = new Tauler(3,3);
         t5.setRand(mock);
         boolean[][] mat5 = {{false,true,true},
                 {true,true,true},
@@ -123,16 +123,16 @@ public class ParamProvider {
         // Este ParamProvider crea varios tableros, de una dimension concreta pero sencillita i le genera las bombas
         RandomMock mock = new RandomMock();
         // Tauler 1 fila
-        Tauler t1 = new Tauler();
+        Tauler t1 = new Tauler(1, 15);
         t1.setRand(mock);
-        boolean[][] mat1 = {{false,false,true,false,false,true,false,true,false,false,false,false,false,false,false,}};
+        boolean[][] mat1 = {{false,false,true,false,false,true,false,true,false,false,false,false,false,false,false}};
         mock.setReturnMatrix(mat1);
         t1.generateBombs();
         Quartet<Tauler, Integer, Integer, Integer> q1 = new Quartet<Tauler, Integer, Integer, Integer>(t1, 0,6, 2);
 
 
         // Tauler 2 columna
-        Tauler t2 = new Tauler();
+        Tauler t2 = new Tauler(9,1);
         t2.setRand(mock);
         boolean[][] mat2 = {{false},{false},{true},{false},{true},{true},{true},{true},{true}};
         mock.setReturnMatrix(mat2);
@@ -140,7 +140,7 @@ public class ParamProvider {
         Quartet<Tauler, Integer, Integer, Integer> q2 = new Quartet<Tauler, Integer, Integer, Integer>(t2, 3,0, 2);
 
         // Tauler 3 columna + boom
-        Tauler t3 = new Tauler();
+        Tauler t3 = new Tauler(9,1);
         t3.setRand(mock);
         boolean[][] mat3 = {{false},{false},{true},{false},{true},{true},{true},{true},{true}};
         mock.setReturnMatrix(mat3);
@@ -153,7 +153,7 @@ public class ParamProvider {
         // Este ParamProvider crea varios tableros, de una dimension concreta pero sencillita i le genera las bombas
         RandomMock mock = new RandomMock();
         // Tauler 1 pared superior
-        Tauler t1 = new Tauler();
+        Tauler t1 = new Tauler(3,3);
         t1.setRand(mock);
         boolean[][] mat1 = {{false,false,false},
                 {true,true,true},
@@ -164,7 +164,7 @@ public class ParamProvider {
 
 
         // Tauler 2 pared inferior
-        Tauler t2 = new Tauler();
+        Tauler t2 = new Tauler(3,3);
         t2.setRand(mock);
         boolean[][] mat2 = {{false,true,false},
                 {true,true,true},
@@ -174,7 +174,7 @@ public class ParamProvider {
         Quartet<Tauler, Integer, Integer, Integer> q2 = new Quartet<Tauler, Integer, Integer, Integer>(t2, 2,1, 3);
 
         // Tauler 3 pared izquierda
-        Tauler t3 = new Tauler();
+        Tauler t3 = new Tauler(3,3);
         t3.setRand(mock);
         boolean[][] mat3 = {{false,false,false},
                 {false,true,true},
@@ -184,7 +184,7 @@ public class ParamProvider {
         Quartet<Tauler, Integer, Integer, Integer> q3 = new Quartet<Tauler, Integer, Integer, Integer>(t3, 1,0, 2);
 
         // Tauler 4 pared derecha
-        Tauler t4 = new Tauler();
+        Tauler t4 = new Tauler(3,3);
         t4.setRand(mock);
         boolean[][] mat4 = {{false,true,true},
                 {true,true,false},
@@ -194,7 +194,7 @@ public class ParamProvider {
         Quartet<Tauler, Integer, Integer, Integer> q4 = new Quartet<Tauler, Integer, Integer, Integer>(t4, 1,2, 4);
 
         // Tauler 5 pared derecha + boom
-        Tauler t5 = new Tauler();
+        Tauler t5 = new Tauler(3,3);
         t5.setRand(mock);
         boolean[][] mat5 = {{false,true,true},
                 {true,true,true},
