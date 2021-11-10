@@ -15,11 +15,12 @@ public class Tauler {
     }
     public void generateBombs(){}
     public void setRand(IRandom r){
+        rand = r;
     }
     public void InicializaMatriz(int n,int m,boolean [][] matr){
 
     }
-    public RandomMock getRand() {
-
+    public IRandom getRand() {
+        return rand;
     }
 }
