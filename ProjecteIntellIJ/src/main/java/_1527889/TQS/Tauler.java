@@ -25,7 +25,21 @@ public class Tauler {
     }
 
     public int open(int n, int m){
-        return 0;
+        //asumim que els valors de n i m són correctes. Ho testejarà la vista
+        if(matrix[n][m]){
+            return -1; // BOOM
+        }
+        int cont = 0;
+        for(int k=n-1;k<n+2;k++){
+            if(k>=i || k < 0)
+                break;
+            for(int l=m-1;l<m+2;l++){
+                if(l>=i || l < 0)
+                    break;
+                cont++;
+            }
+        }
+        return cont;
     }
 
 }
