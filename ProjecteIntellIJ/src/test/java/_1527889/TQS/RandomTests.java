@@ -19,7 +19,7 @@ public class RandomTests {
         //n i m són arbitraris ja que no canviaran la matriu que retornara el mock
         assertEquals(mock.generateRandomMatrix(2,3), mat);
     }
-    //Test del Random real
+    //Test del Random real, dimensions
     @ParameterizedTest
     @CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
     void TestGetRandomMatrix(int n, int m) {
@@ -29,7 +29,7 @@ public class RandomTests {
         assertEquals(mat.length, n);
         assertEquals(mat[0].length, m);
     }
-
+    //Test del Random real, crearne varies i comprobar que efectivament són diferents.
     @ParameterizedTest
     @CsvSource(value = {"8,8","16,16","16,30","100,100","400,400"})
     void TestGetDifferentRandomMatrix(int n, int m) {
