@@ -11,8 +11,11 @@ public class Tauler {
     public int getN(){return i;}
     public int getM(){return j;}
     public boolean[][] getMatrix() {
+        return matrix;
     }
-    public void generateBombs(){}
+    public void generateBombs(){
+        matrix = rand.generateRandomMatrix(i,j);
+    }
     public void setRand(IRandom r){
         rand = r;
     }
