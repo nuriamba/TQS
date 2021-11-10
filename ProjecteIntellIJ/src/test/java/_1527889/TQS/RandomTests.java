@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class RandomTests {
 
@@ -27,5 +28,17 @@ public class RandomTests {
         boolean[][] mat = ran.generateRandomMatrix(n,m);
         assertEquals(mat.length, n);
         assertEquals(mat[0].length, m);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"8,8","16,16","16,30","100,100","400,400"})
+    void TestGetDifferentRandomMatrix(int n, int m) {
+        Random ran = new Random();
+
+        boolean[][] mat = ran.generateRandomMatrix(n,m);
+        boolean[][] mat2 = ran.generateRandomMatrix(n,m);
+        //big boards, little chance of coincidence.
+        assertNotEquals(mat,mat2);
+
     }
 }
