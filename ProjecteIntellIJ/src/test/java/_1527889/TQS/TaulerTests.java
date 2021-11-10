@@ -5,8 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TaulerTests {
     // Test del constructor, mira que las medidas sean las correctas
@@ -31,7 +30,9 @@ public class TaulerTests {
     @CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
     void TestGetMatrix(int n, int m){
         Tauler t = new Tauler(n,m);
-        assertEquals(t.getMatrix(), new boolean[n][m]);
+        assertEquals(n, t.getN());
+        assertEquals(m, t.getM());
+        assertNull(t.getMatrix()); // El constructor al inici no genera la matriu. no tindria sentit generar-la perque volem que es generi quan es cridi a generateBombs
     }
 
     //En este testearemos la generacion de una matriz nxm con 1 i 0 distribuidos aleatoriamente.
