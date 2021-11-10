@@ -13,14 +13,19 @@ public class Tauler {
     public boolean[][] getMatrix() {
         return matrix;
     }
-    public void generateBombs(){
-        matrix = rand.generateRandomMatrix(i,j);
-    }
     public void setRand(IRandom r){
         rand = r;
     }
-
     public IRandom getRand() {
         return rand;
     }
+
+    public void generateBombs(){
+        matrix = rand.generateRandomMatrix(i,j);
+    }
+
+    public int open(int n, int m){
+        return 0;
+    }
+
 }

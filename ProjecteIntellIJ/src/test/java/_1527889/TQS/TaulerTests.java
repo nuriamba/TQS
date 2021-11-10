@@ -51,4 +51,5 @@ public class TaulerTests {
 		assertEquals(mat, tauler.getMatrix());
     }
 
+
 }
