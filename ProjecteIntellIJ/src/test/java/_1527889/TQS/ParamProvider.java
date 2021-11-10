@@ -19,4 +19,13 @@ public class ParamProvider {
         t3.generateBombs();
         return Arrays.asList(t1,t2,t3);
     }
+    static List<boolean[][]> matriusSimples(){
+        // Este ParamProvider crea varios tableros, de una dimension concreta pero sencillita i le genera las bombas
+        boolean[][] t1 = {{true,false,true,false,true,false,true,false},{true,false,true,false,true,false,true,false}, {true,false,true,false,true,false,true,false}, {true,false,true,false,true,false,true,false}};
+        boolean[][] t2 = {{false,true,true,false,false,false,true,false},{true,false,true,false,false,false,true,true}};
+        boolean[][] t3 = {{true,true,true,true,true,true,true,true},{true,true,true,true,true,true,true,true}};
+        boolean[][] t4 = {{false,false,false,false,false,false,false,false},{false,false,false,false,false,false,false,false}};
+        boolean[][] t5 = {{false,false,false,false,false,false,false,false},{false,false,false,false,false,false,false,false},{true,true,true,true,true,true,true,true},{true,true,true,true,true,true,true,true}};
+        return Arrays.asList(t1,t2,t3,t4, t5);
+    }
 }
