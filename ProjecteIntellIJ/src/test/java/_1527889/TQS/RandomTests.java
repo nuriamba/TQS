@@ -62,7 +62,7 @@ public class RandomTests {
             expected = (int) (n*m* 0.25); // facil es 25% de prob de bomba
         }
         else if(dif == "mitja"){
-            expected = (int) (n*m* 0.33); // mitja es 33% de prob de bomba
+            expected = (int) (n*m* 0.3333334); // mitja es 33% de prob de bomba
         }
         else if(dif == "dificil"){
             expected = (int) (n*m* 0.5); // dificil es 50% de prob de bomba
@@ -79,6 +79,12 @@ public class RandomTests {
         }
 
         assertEquals(cont,expected);
+
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"8,8","16,16","16,30","100,100","400,400"})
+    void TestGetDifferentDificultyMatrix(int n, int m){
 
     }
 }
