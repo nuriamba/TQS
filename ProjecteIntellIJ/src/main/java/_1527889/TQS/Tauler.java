@@ -1,5 +1,9 @@
 package _1527889.TQS;
 
+import org.javatuples.Triplet;
+
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class Tauler {
@@ -54,6 +58,10 @@ public class Tauler {
             }
         }
         return cont;
+    }
+
+    public List<Triplet<Integer, Integer, Character>> open_rec(int x, int y){
+        return new LinkedList<Triplet<Integer, Integer, Character>>();
     }
 
 }
