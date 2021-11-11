@@ -2,6 +2,9 @@ package _1527889.TQS;
 
 public class VistaMock implements IVista{
     Tauler bombas;
+    public static final int CASELLA_OBERTA = 0;
+    public static final int GAME_OVER = -1;
+    public static final int SUCCESS = 1;
     char[][] tauler;
     VistaMock(Tauler t){
 
@@ -23,8 +26,8 @@ public class VistaMock implements IVista{
     }
 
     @Override
-    public void obre(int i, int j) {
-
+    public int obre(int i, int j) {
+        return 0;
     }
 
 
