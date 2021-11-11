@@ -274,13 +274,9 @@ public class ParamProvider {
         ret.add(new Triplet<Tauler, Integer, Integer>(t, 0, 0));
         ret.add(new Triplet<Tauler, Integer, Integer>(t, 0, 1));
         ret.add(new Triplet<Tauler, Integer, Integer>(t, 0, 2));
-        ret.add(new Triplet<Tauler, Integer, Integer>(t, 0, 3));
         ret.add(new Triplet<Tauler, Integer, Integer>(t, 1, 1));
         ret.add(new Triplet<Tauler, Integer, Integer>(t, 1, 2));
-        ret.add(new Triplet<Tauler, Integer, Integer>(t, 1, 3));
         ret.add(new Triplet<Tauler, Integer, Integer>(t, 2, 2));
-        ret.add(new Triplet<Tauler, Integer, Integer>(t, 2, 3));
-        ret.add(new Triplet<Tauler, Integer, Integer>(t, 3, 3));
 
         return ret;
     }
