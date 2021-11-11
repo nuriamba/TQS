@@ -5,6 +5,7 @@ public class Tauler {
     private int j;
     private boolean [][] matrix;
     private static IRandom rand;
+    private String dificulty;
 
     public Tauler(int n, int m){i=n; j=m;}
     public int getN(){return i;}
@@ -18,7 +19,10 @@ public class Tauler {
     public IRandom getRand() {
         return rand;
     }
-
+    public void setDificulty(String d){}
+    public String getDificulty(){
+        return "";
+    };
     public void generateBombs(){
 
         matrix = rand.generateRandomMatrix(i,j);

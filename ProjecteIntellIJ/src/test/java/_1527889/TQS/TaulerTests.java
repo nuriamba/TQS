@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,6 +19,7 @@ public class TaulerTests {
         assertEquals(m, t.getM());
     }
 
+    //Caixa negra
     @Test
     void TestGetSetRand(){
         Tauler t = new Tauler(1,1);
@@ -26,6 +28,22 @@ public class TaulerTests {
         assertSame(mock, t.getRand());
     }
 
+    //Caixa negra, particions equivalents: dificultat acceptada, dificultat no valida.
+    @ParameterizedTest
+    @ValueSource(strings = {"facil","dificil","mitja"})
+    void TestSetGetDificultyCasBase(String d){
+        Tauler t = new Tauler(3,3);
+        t.setDificulty(d);
+        assertEquals(t.getDificulty(),d);
+    }
+    @Test
+    void TestSetGetDificultyCasNoVaild(){
+        Tauler t = new Tauler(3,3);
+        t.setDificulty("qwerwe");
+        assertNull(t.getDificulty());
+    }
+
+    //Caixa negra
     @ParameterizedTest
     @CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
     void TestGetMatrix(int n, int m){
