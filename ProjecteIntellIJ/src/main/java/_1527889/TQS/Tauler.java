@@ -1,5 +1,7 @@
 package _1527889.TQS;
 
+import java.util.Objects;
+
 public class Tauler {
     private int i;
     private int j;
@@ -20,15 +22,17 @@ public class Tauler {
         return rand;
     }
     public void setDificulty(String d){
-        if(dificulty == "facil" || dificulty == "mitja" || dificulty == "dificil")
+        if(Objects.equals(d, "facil") || Objects.equals(d, "mitja") || Objects.equals(d, "dificil"))
             dificulty = d;
     }
     public String getDificulty(){
         return dificulty;
     };
     public void generateBombs(){
-
-        matrix = rand.generateRandomMatrix(i,j,dificulty);
+        if(dificulty != null)
+            matrix = rand.generateRandomMatrix(i,j,dificulty);
+        else
+            matrix = rand.generateRandomMatrix(i,j);
     }
 
     //Faltarà fer la recursivitat

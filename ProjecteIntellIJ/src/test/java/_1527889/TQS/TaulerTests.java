@@ -62,6 +62,7 @@ public class TaulerTests {
 		RandomMock randomMockRandom =new RandomMock();
         randomMockRandom.setReturnMatrix(mat);
 		Tauler tauler=new Tauler(mat.length, mat[0].length);
+        tauler.setDificulty("facil");
 		tauler.setRand(randomMockRandom);
         tauler.generateBombs();
         assertEquals(mat.length, tauler.getN());
