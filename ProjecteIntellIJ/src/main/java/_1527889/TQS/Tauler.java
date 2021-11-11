@@ -7,9 +7,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class Tauler {
+    public static final int CASELLA_OBERTA = 0;
+    public static final int GAME_OVER = -1;
+    public static final int SUCCESS = 1;
+
     private int i;
     private int j;
+
+    private char[][] tauler;
     private boolean [][] matrix;
+
     private static IRandom rand;
     private String dificulty=null;
 
@@ -60,8 +67,20 @@ public class Tauler {
         return cont;
     }
 
-    public List<Triplet<Integer, Integer, Character>> open_rec(int x, int y){
-        return new LinkedList<Triplet<Integer, Integer, Character>>();
+    public int obre_rec(int i, int j) {
+        /*PSEUDOCODI
+         * Si (i,j) és casella tancada
+         *   n = Tauler.open(i,j)
+         *   Si n == 0
+         *       setCasella(i,j, '0')
+         *       this.obre(i+-1, j+-1)
+         *   Si n == -1
+         *       return CODI_GAME_OVER
+         *   Sino
+         *       setCasella(i,j, n)
+         * Sino
+         *   return CODI_CASELLA_OCUPADA
+         * */
+        return 0;
     }
-
 }
