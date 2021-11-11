@@ -83,5 +83,49 @@ public class TaulerTests {
 		assertEquals(mat, tauler.getMatrix());
     }
 
+    //Cas base
+    @Test
+    void TestRecursiveOpenSimple(){
+        boolean[][] mat = { {true, false, false, false},
+                            {true, false, false, false},
+                            {true, false, false, false}};
+        RandomMock randomMockRandom =new RandomMock();
+        randomMockRandom.setReturnMatrix(mat);
+        Tauler tauler=new Tauler(mat.length, mat[0].length);
+        tauler.setDificulty("facil");
+        tauler.setRand(randomMockRandom);
+        tauler.generateBombs();
+
+        tauler.obre_rec(1,2);
+        char o = Tauler.CASELLA_OBERTA;
+        char t = Tauler.TANCAT;
+        char[][] expected = {   {t, '2', o, o},
+                                {t, '3', o, o},
+                                {t, '2', o, o}};
+        assertEquals(expected,tauler.getVista());
+    }
+
+    //Parets
+    @Test
+    void TestRecursiveOpenComplex(){
+        boolean[][] mat = { {true, false, false, false},
+                {true, false, false, false},
+                {true, false, false, false}};
+        RandomMock randomMockRandom =new RandomMock();
+        randomMockRandom.setReturnMatrix(mat);
+        Tauler tauler=new Tauler(mat.length, mat[0].length);
+        tauler.setDificulty("facil");
+        tauler.setRand(randomMockRandom);
+        tauler.generateBombs();
+
+        tauler.obre_rec(0,2);
+        char o = Tauler.CASELLA_OBERTA;
+        char t = Tauler.TANCAT;
+        char[][] expected = {   {t, '2', o, o},
+                {t, '3', o, o},
+                {t, '2', o, o}};
+        assertEquals(expected,tauler.getVista());
+    }
+
 
 }
