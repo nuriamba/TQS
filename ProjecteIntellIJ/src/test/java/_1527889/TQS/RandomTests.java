@@ -85,6 +85,38 @@ public class RandomTests {
     @ParameterizedTest
     @CsvSource(value = {"8,8","16,16","16,30","100,100","400,400"})
     void TestGetDifferentDificultyMatrix(int n, int m){
+        Random ran = new Random();
 
+        boolean[][] matEasy = ran.generateRandomMatrix(n,m,"facil");
+        int matEasyCont = 0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(matEasy[i][j]){
+                    matEasyCont++;
+                }
+            }
+        }
+
+        boolean[][] matMedium = ran.generateRandomMatrix(n,m,"mitja");
+        int matMediumCont = 0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(matMedium[i][j]){
+                    matMediumCont++;
+                }
+            }
+        }
+
+        boolean[][] matHard = ran.generateRandomMatrix(n,m,"dificil");
+        int matHardCont = 0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(matHard[i][j]){
+                    matHardCont++;
+                }
+            }
+        }
+        //big boards, little chance of coincidence.
+        assert(matEasyCont < matMediumCont && matMediumCont < matHardCont);
     }
 }
