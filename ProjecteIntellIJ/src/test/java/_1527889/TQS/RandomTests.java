@@ -1,5 +1,6 @@
 package _1527889.TQS;
 
+import org.javatuples.Pair;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -39,6 +40,45 @@ public class RandomTests {
         boolean[][] mat2 = ran.generateRandomMatrix(n,m);
         //big boards, little chance of coincidence.
         assertNotEquals(mat,mat2);
+
+    }
+
+    // TESTS DIFERENTS DIFICULTATS
+
+    //Mocked
+    @ParameterizedTest
+    @MethodSource(value = "_1527889.TQS.ParamProvider#taulerDificultatsMock")
+    void TestGetDifferentDificultyMatrixMocked(Pair<boolean[][], String> p) {
+        int n = p.getValue0().length;
+        int m = p.getValue0()[0].length;
+        String dif = p.getValue1();
+        RandomMock mock = new RandomMock();
+        mock.setReturnMatrix(p.getValue0());
+        int expected = 0;
+        boolean[][] ret = mock.generateRandomMatrix(n, m, dif);
+
+        //Contem bombas segons la dificultat
+        if(dif == "facil"){
+            expected = (int) (n*m* 0.25); // facil es 25% de prob de bomba
+        }
+        else if(dif == "mitja"){
+            expected = (int) (n*m* 0.33); // mitja es 33% de prob de bomba
+        }
+        else if(dif == "dificil"){
+            expected = (int) (n*m* 0.5); // dificil es 50% de prob de bomba
+        }else{
+            expected = 0;
+        }
+        int cont = 0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(ret[i][j]){
+                    cont++;
+                }
+            }
+        }
+
+        assertEquals(cont,expected);
 
     }
 }

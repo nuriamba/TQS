@@ -1,6 +1,10 @@
 package _1527889.TQS;
 
+import org.javatuples.Pair;
 import org.javatuples.Quartet;
+import org.javatuples.Triplet;
+
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -204,5 +208,53 @@ public class ParamProvider {
         Quartet<Tauler, Integer, Integer, Integer> q5 = new Quartet<Tauler, Integer, Integer, Integer>(t5, 1,2, -1);
 
         return Arrays.asList(q1,q2,q3,q4,q5);
+    }
+    static List<Triplet<Integer, Integer, String>> taulerDificultats(){
+        Triplet<Integer, Integer, String> t1 = new Triplet<Integer, Integer, String>(8,8,"facil");
+        Triplet<Integer, Integer, String> t2 = new Triplet<Integer, Integer, String>(8,8,"mitja");
+        Triplet<Integer, Integer, String> t3 = new Triplet<Integer, Integer, String>(16,16,"mitja");
+        Triplet<Integer, Integer, String> t4 = new Triplet<Integer, Integer, String>(16,16,"dificil");
+        Triplet<Integer, Integer, String> t5 = new Triplet<Integer, Integer, String>(32,32,"dificil");
+        return Arrays.asList(t1,t2,t3,t4,t5);
+    }
+    static List<Pair<boolean[][], String>> taulerDificultatsMock(){
+
+        boolean[][] mat1 = {{true, false, true, false, false, true},
+                            {false, true, false, false, false, false},
+                            {false, false, false, true, false, false},
+                            {false, false, false, false, true, false}};
+        Pair<boolean[][], String> t1 = new Pair<boolean[][], String>(mat1, "facil");
+
+        boolean[][] mat2 = {{false, true, false, false, true, false},
+                            {false, false, true, false, false, true},
+                            {true, false, false, true, false, false},
+                            {false, true, false, false, true, false}};
+        Pair<boolean[][], String> t2 = new Pair<boolean[][], String>(mat2, "mitja");
+
+        boolean[][] mat3 = {{true, false, false, true, false, false},
+                            {false, true, false, false, true, false},
+                            {false, false, true, false, false, true},
+                            {false, true, false, false, true, false}};
+        Pair<boolean[][], String> t3 = new Pair<boolean[][], String>(mat3, "mitja");
+
+        boolean[][] mat4 = {{true, false, true, false, false, true},
+                            {false, true, true, false, true, false},
+                            {true, false, false, true, true, false},
+                            {false, true, false, true, false, true}};
+        Pair<boolean[][], String> t4 = new Pair<boolean[][], String>(mat4, "dificil");
+
+        boolean[][] mat5 = {{true, false, false, false, true, true},
+                            {false, true, true, true, false, false},
+                            {true, false, true, true, false, false},
+                            {false, true, false, false, true, true}};
+        Pair<boolean[][], String> t5 = new Pair<boolean[][], String>(mat5, "dificil");
+
+        boolean[][] mat6 = {{false, false, false, false, false, false},
+                {false, false, false, false, false, false},
+                {false, false, false, false, false, false},
+                {false, false, false, false, false, false}};
+        Pair<boolean[][], String> t6 = new Pair<boolean[][], String>(mat6, "qwert");
+
+        return Arrays.asList(t1,t2,t3,t4,t5,t6);
     }
 }

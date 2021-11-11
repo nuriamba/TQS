@@ -10,5 +10,10 @@ public class RandomMock implements IRandom {
     public boolean[][] generateRandomMatrix(int n, int m) {
         return mat;
     }
+
+    @Override
+    public boolean[][] generateRandomMatrix(int n, int m, String dificultad) {
+        return new boolean[0][];
+    }
 }
 

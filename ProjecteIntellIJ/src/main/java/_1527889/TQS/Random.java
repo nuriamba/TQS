@@ -12,4 +12,9 @@ public class Random implements IRandom{
         }
         return mat;
     }
+
+    @Override
+    public boolean[][] generateRandomMatrix(int n, int m, String dificultad) {
+        return new boolean[0][];
+    }
 }
