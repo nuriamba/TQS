@@ -5,7 +5,7 @@ public class Tauler {
     private int j;
     private boolean [][] matrix;
     private static IRandom rand;
-    private String dificulty;
+    private String dificulty=null;
 
     public Tauler(int n, int m){i=n; j=m;}
     public int getN(){return i;}
@@ -19,13 +19,16 @@ public class Tauler {
     public IRandom getRand() {
         return rand;
     }
-    public void setDificulty(String d){}
+    public void setDificulty(String d){
+        if(dificulty == "facil" || dificulty == "mitja" || dificulty == "dificil")
+            dificulty = d;
+    }
     public String getDificulty(){
-        return "";
+        return dificulty;
     };
     public void generateBombs(){
 
-        matrix = rand.generateRandomMatrix(i,j);
+        matrix = rand.generateRandomMatrix(i,j,dificulty);
     }
 
     //Faltarà fer la recursivitat
