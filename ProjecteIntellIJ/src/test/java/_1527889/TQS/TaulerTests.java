@@ -19,6 +19,19 @@ public class TaulerTests {
         assertEquals(m, t.getM());
     }
 
+    // Test del constructor, mira que el constructor crei bé la matriu de vista
+    @ParameterizedTest
+    @CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
+    void TestCreaTaulerVista(int n, int m){
+        Tauler t = new Tauler(n, m);
+        char[][] r = t.getVista();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                assertEquals(r[i][j], Tauler.TANCAT);
+            }
+        }
+    }
+
     //Caixa negra
     @Test
     void TestGetSetRand(){

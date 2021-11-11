@@ -10,6 +10,7 @@ public class Tauler {
     public static final int CASELLA_OBERTA = 0;
     public static final int GAME_OVER = -1;
     public static final int SUCCESS = 1;
+    public static final char TANCAT = 'X';
 
     private int i;
     private int j;
@@ -20,11 +21,16 @@ public class Tauler {
     private static IRandom rand;
     private String dificulty=null;
 
-    public Tauler(int n, int m){i=n; j=m;}
+    public Tauler(int n, int m){
+        i=n; j=m;
+    }
     public int getN(){return i;}
     public int getM(){return j;}
     public boolean[][] getMatrix() {
         return matrix;
+    }
+    public char[][] getVista() {
+        return new char[0][];
     }
     public void setRand(IRandom r){
         rand = r;
