@@ -6,6 +6,7 @@ import org.javatuples.Triplet;
 
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ParamProvider {
@@ -256,5 +257,31 @@ public class ParamProvider {
         Pair<boolean[][], String> t6 = new Pair<boolean[][], String>(mat6, "qwert");
 
         return Arrays.asList(t1,t2,t3,t4,t5,t6);
+    }
+    static List<Triplet<Tauler, Integer, Integer>> obrirPairWise(){
+        int n = 3;
+        int m = 3;
+        List<Triplet<Tauler, Integer, Integer>> ret = new LinkedList<Triplet<Tauler, Integer, Integer>>();
+        boolean[][] mat1 = {{true, false, true},
+                {false, true, false},
+                {false, false, false}};
+        Tauler t = new Tauler(n,m);
+        RandomMock mock = new RandomMock();
+        mock.setReturnMatrix(mat1);
+        t.setRand(mock);
+        t.generateBombs();
+
+        ret.add(new Triplet<Tauler, Integer, Integer>(t, 0, 0));
+        ret.add(new Triplet<Tauler, Integer, Integer>(t, 0, 1));
+        ret.add(new Triplet<Tauler, Integer, Integer>(t, 0, 2));
+        ret.add(new Triplet<Tauler, Integer, Integer>(t, 0, 3));
+        ret.add(new Triplet<Tauler, Integer, Integer>(t, 1, 1));
+        ret.add(new Triplet<Tauler, Integer, Integer>(t, 1, 2));
+        ret.add(new Triplet<Tauler, Integer, Integer>(t, 1, 3));
+        ret.add(new Triplet<Tauler, Integer, Integer>(t, 2, 2));
+        ret.add(new Triplet<Tauler, Integer, Integer>(t, 2, 3));
+        ret.add(new Triplet<Tauler, Integer, Integer>(t, 3, 3));
+
+        return ret;
     }
 }

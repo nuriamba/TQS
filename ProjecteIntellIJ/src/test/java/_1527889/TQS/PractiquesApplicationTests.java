@@ -1,9 +1,11 @@
 package _1527889.TQS;
 
+
 import org.javatuples.Quartet;
-import org.junit.jupiter.api.Test;
+import org.javatuples.Triplet;
+
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,6 +48,15 @@ class PractiquesApplicationTests {
 		Tauler t = q.getValue0();
 		int r = t.open(q.getValue1(),q.getValue2());
 		assertEquals(q.getValue3(), r);
+	}
+
+	// Test PairWise. Obrir totes les combinacions de variables d'entrada
+	@ParameterizedTest
+	@MethodSource(value = "_1527889.TQS.ParamProvider#obrirPairWise")
+	void TestBombasAlrededorParedes(Triplet<Tauler,Integer, Integer> q) {
+		Tauler t = q.getValue0();
+		int r = t.open(q.getValue1(),q.getValue2());
+		assert(r>= -1 && r < 9);
 	}
 
 }
