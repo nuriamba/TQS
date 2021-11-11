@@ -22,6 +22,12 @@ public class Tauler {
     private String dificulty=null;
 
     public Tauler(int n, int m){
+        tauler = new char[n][m];
+        for(int k=0;k<n;k++){
+            for(int l=0;l<m;l++){
+                tauler[k][l]= Tauler.TANCAT;
+            }
+        }
         i=n; j=m;
     }
     public int getN(){return i;}
@@ -30,7 +36,7 @@ public class Tauler {
         return matrix;
     }
     public char[][] getVista() {
-        return new char[0][];
+        return tauler;
     }
     public void setRand(IRandom r){
         rand = r;
