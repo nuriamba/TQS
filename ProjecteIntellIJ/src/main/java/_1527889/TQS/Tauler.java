@@ -91,8 +91,7 @@ public class Tauler {
                     for(int l=y-1;l<y+2;l++){
                         if(l>=j || l < 0)
                             continue;
-                        if(matrix[k][l])
-                            obre_rec(k,l);
+                        obre_rec(k,l);
                     }
                 }
             }
