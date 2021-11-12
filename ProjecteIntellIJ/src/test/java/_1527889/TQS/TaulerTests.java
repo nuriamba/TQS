@@ -102,7 +102,13 @@ public class TaulerTests {
         char[][] expected = {   {t, '2', o, o},
                                 {t, '3', o, o},
                                 {t, '2', o, o}};
-        assertEquals(expected,tauler.getVista());
+        char[][] res= tauler.getVista();
+        for(int i=0;i<3;i++){
+            for(int j=0;j<4;j++){
+                assert(expected[i][j]==res[i][j]);
+            }
+        }
+
     }
 
     //Parets
@@ -124,7 +130,13 @@ public class TaulerTests {
         char[][] expected = {   {t, '2', o, o},
                 {t, '3', o, o},
                 {t, '2', o, o}};
-        assertEquals(expected,tauler.getVista());
+
+        char[][] res= tauler.getVista();
+        for(int i=0;i<3;i++){
+            for(int j=0;j<4;j++){
+                assert(expected[i][j]==res[i][j]);
+            }
+        }
     }
 
 
