@@ -122,5 +122,7 @@ public class Tauler {
     }
 
     public void setVista(char[][] mat) {
+        if(mat.length == i && mat[0].length == j)
+            tauler = mat;
     }
 }
