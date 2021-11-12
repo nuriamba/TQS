@@ -78,6 +78,19 @@ public class TaulerTests {
         }
     }
 
+    //Test de caixa negra que mostra que si fem un set de una vista que no correspon en mides al taulell, el metode no fa res.
+    @Test
+    void TestSetVistaMalament(){
+        char t = Tauler.TANCAT;
+        char o = Tauler.CASELLA_OBERTA;
+        char[][] mat ={{o,'2',t},{o,'4',o},{t,'6',t}, {t,'8',o},{t,o,'7'},{o,t,o}};
+        Tauler tau = new Tauler(2,3);
+        char[][] previ = tau.getVista();
+        tau.setVista(mat);
+        assertEquals(previ,tau.getVista());
+
+    }
+
     //En este testearemos la generacion de una matriz nxm con 1 i 0 distribuidos aleatoriamente.
     // Aquí la idea és hacer un mock de la libreria random. Para "forzar" a que el aleatorio genere una matriz
     // que nosotros queramos. Luego habra que hacer un assert entre la matriz que se genera i la que nos deberia dar (que es lo que hayamos puesto en el mock)
