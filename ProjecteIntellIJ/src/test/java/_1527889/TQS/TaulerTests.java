@@ -56,6 +56,27 @@ public class TaulerTests {
         assertNull(t.getDificulty());
     }
 
+    //Test caixa blanca, condition coverage
+    @Test
+    void TestSetGetDificultyConditionCoverage(){
+        Tauler t = new Tauler(3,3);
+        t.setDificulty("qwerwe");
+        assertNull(t.getDificulty());
+
+        Tauler t1 = new Tauler(3,3);
+        t1.setDificulty("facil");
+        assertEquals(t1.getDificulty(), "facil");
+
+        Tauler t2 = new Tauler(3,3);
+        t2.setDificulty("dificil");
+        assertEquals(t2.getDificulty(), "dificil");
+
+        Tauler t3 = new Tauler(3,3);
+        t3.setDificulty("mitja");
+        assertEquals(t3.getDificulty(), "mitja");
+    }
+
+
     //Caixa negra
     @ParameterizedTest
     @CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
