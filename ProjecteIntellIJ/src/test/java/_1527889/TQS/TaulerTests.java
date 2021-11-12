@@ -71,8 +71,8 @@ public class TaulerTests {
         Tauler t = new Tauler(mat.length,mat[0].length);
         t.setVista(mat);
         char[][] res= t.getVista();
-        for(int i=0;i<3;i++){
-            for(int j=0;j<4;j++){
+        for(int i=0;i<mat.length;i++){
+            for(int j=0;j<mat[0].length;j++){
                 assert(mat[i][j]==res[i][j]);
             }
         }
