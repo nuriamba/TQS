@@ -65,6 +65,18 @@ public class TaulerTests {
         assertEquals(m, t.getM());
         assertNull(t.getMatrix()); // El constructor al inici no genera la matriu. no tindria sentit generar-la perque volem que es generi quan es cridi a generateBombs
     }
+    @ParameterizedTest
+    @MethodSource(value = "_1527889.TQS.ParamProvider#matriusVista")
+    void TestSetVista(char[][] mat){
+        Tauler t = new Tauler(mat.length,mat[0].length);
+        t.setVista(mat);
+        char[][] res= t.getVista();
+        for(int i=0;i<3;i++){
+            for(int j=0;j<4;j++){
+                assert(mat[i][j]==res[i][j]);
+            }
+        }
+    }
 
     //En este testearemos la generacion de una matriz nxm con 1 i 0 distribuidos aleatoriamente.
     // Aquí la idea és hacer un mock de la libreria random. Para "forzar" a que el aleatorio genere una matriz
@@ -130,6 +142,39 @@ public class TaulerTests {
         char[][] expected = {   {t, '2', o, o},
                 {t, '3', o, o},
                 {t, '2', o, o}};
+
+        char[][] res= tauler.getVista();
+        for(int i=0;i<3;i++){
+            for(int j=0;j<4;j++){
+                assert(expected[i][j]==res[i][j]);
+            }
+        }
+    }
+
+    //CaixaBlanca
+    //En aquest test farem un cas complex en el que la funció recursiva passi per tots els casos possibles, sense contar el cas game over
+    @Test
+    void TestRecursiveOpenCaixaBlanca(){
+        boolean[][] mat = { {true, false, false, false,false},
+                {true, false, true, true,true},
+                {true, true, false, false,false},
+                {true, true, false, false,false},
+                {true, false, false, false,false},};
+        RandomMock randomMockRandom =new RandomMock();
+        randomMockRandom.setReturnMatrix(mat);
+        Tauler tauler=new Tauler(mat.length, mat[0].length);
+        tauler.setDificulty("facil");
+        tauler.setRand(randomMockRandom);
+        tauler.generateBombs();
+
+        tauler.obre_rec(3,3);
+        char o = Tauler.CASELLA_OBERTA;
+        char t = Tauler.TANCAT;
+        char[][] expected = {   {t, t, t, t,t},
+                                {t, t, t, t,t},
+                                {t, t, '4', '3', '2'},
+                                {t, t, '2', o, o},
+                                {t, t, '1', o, o}};
 
         char[][] res= tauler.getVista();
         for(int i=0;i<3;i++){

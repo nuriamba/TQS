@@ -120,4 +120,7 @@ public class Tauler {
          * */
         return 0;
     }
+
+    public void setVista(char[][] mat) {
+    }
 }

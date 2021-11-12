@@ -280,4 +280,14 @@ public class ParamProvider {
 
         return ret;
     }
+    static List<char[][]> matriusVista(){
+        char t = Tauler.TANCAT;
+        char o = Tauler.CASELLA_OBERTA;
+        char[][] t1 ={{o,o,t},{o,o,o},{t,t,t}, {t,o,o},{t,o,t},{o,t,o}};
+        char[][] t2 ={{o,'2',t},{o,'4',o},{t,'6',t}, {t,'8',o},{t,o,'7'},{o,t,o}};
+        char[][] t3 = {{t,t,t},{t,'8',t},{t,t,t}};
+        char[][] t4 = {{t,t,t},{t,t,t},{t,t,t}};
+        char[][] t5 = {{o,o,o},{o,o,o},{o,o,o}};
+        return Arrays.asList(t1,t2,t3,t4, t5);
+    }
 }
