@@ -165,7 +165,7 @@ public class TaulerTests {
     }
 
     //CaixaBlanca
-    //En aquest test farem un cas complex en el que la funció recursiva passi per tots els casos possibles, sense contar el cas game over
+    //En aquest test farem un cas complex en el que la funció recursiva passi per tots els casos possibles. Run coverage tant de open com de open rec
     @Test
     void TestRecursiveOpenCaixaBlanca(){
         boolean[][] mat = { {true, false, false, false,false},
@@ -190,11 +190,42 @@ public class TaulerTests {
                                 {t, t, '1', o, o}};
 
         char[][] res= tauler.getVista();
-        for(int i=0;i<3;i++){
-            for(int j=0;j<4;j++){
+        for(int i=0;i<5;i++){
+            for(int j=0;j<5;j++){
                 assert(expected[i][j]==res[i][j]);
             }
         }
+
+        boolean[][] mat2 = { {false, false, false},{false, false, false},{false, false, false}};
+
+        randomMockRandom.setReturnMatrix(mat2);
+        Tauler tauler2=new Tauler(mat2.length, mat2[0].length);
+        tauler2.setDificulty("facil");
+        tauler2.setRand(randomMockRandom);
+        tauler2.generateBombs();
+
+        tauler2.obre_rec(1,1);
+        char[][] expected2 = {{o, o, o}, {o,o,o}, {o,o,o}};
+
+        res= tauler2.getVista();
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                assert(expected2[i][j]==res[i][j]);
+            }
+        }
+
+        boolean[][] mat3 = { {false, false, false},{false, true, false},{false, false, false}};
+
+        randomMockRandom.setReturnMatrix(mat3);
+        Tauler tauler3=new Tauler(mat3.length, mat3[0].length);
+        tauler3.setDificulty("facil");
+        tauler3.setRand(randomMockRandom);
+        tauler3.generateBombs();
+
+        int r = tauler3.obre_rec(1,1);
+        assertEquals(r, Tauler.GAME_OVER);
+
+
     }
 
 
