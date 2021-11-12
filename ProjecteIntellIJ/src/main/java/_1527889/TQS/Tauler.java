@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class Tauler {
-    public static final int CASELLA_OBERTA = 0;
+    public static final int CASELLA_JA_OBERTA = 0;
     public static final int GAME_OVER = -1;
     public static final int SUCCESS = 1;
     public static final char TANCAT = 'X';
+    public static final char CASELLA_OBERTA = '0';
 
     private int i;
     private int j;
@@ -79,7 +80,32 @@ public class Tauler {
         return cont;
     }
 
-    public int obre_rec(int i, int j) {
+    public int obre_rec(int x, int y) {
+        if(tauler[x][y] == Tauler.TANCAT){
+            int n = open(x,y);
+            if(n == 0){
+                tauler[x][y] = Tauler.CASELLA_OBERTA;
+                for(int k=x-1;k<x+2;k++){
+                    if(k>=i || k < 0)
+                        continue;
+                    for(int l=y-1;l<y+2;l++){
+                        if(l>=j || l < 0)
+                            continue;
+                        if(matrix[k][l])
+                            obre_rec(k,l);
+                    }
+                }
+            }
+            else if(n == -1)
+                return Tauler.GAME_OVER;
+            else {
+                tauler[x][y] = (char) (n + 48);
+                return Tauler.SUCCESS;
+            }
+        }
+        else{
+            return Tauler.CASELLA_JA_OBERTA;
+        }
         /*PSEUDOCODI
          * Si (i,j) és casella tancada
          *   n = Tauler.open(i,j)
