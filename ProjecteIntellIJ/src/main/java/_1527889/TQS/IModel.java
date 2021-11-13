@@ -7,6 +7,7 @@ public interface IModel {
     public static final Integer MARCAR = 1;
     public static final Integer SORTIR = 2;
 
+    Pair<Integer, Integer> demanarDimensionsTaulell();
     String demanarDificultat();
     int demanarAccio();
     Pair<Integer, Integer> demanarCasella();

@@ -11,6 +11,14 @@ public class ModelMock implements IModel{
     private Queue<Pair<Integer,Integer>> targetInputs;
     private Queue<Integer> targetActions;
 
+    public ModelMock(){
+
+    }
+
+    public ModelMock(int n, int m){
+
+    }
+
     public void setTargetDificultat(String s){
         //no comprovem si el string es vàlid o no pk no es introduit per l'usuari, com és el mock, és introduit pel programador
         dif = s;
@@ -22,6 +30,11 @@ public class ModelMock implements IModel{
 
     public void setListOfNextActions(Queue<Integer> l){
         targetActions = l;
+    }
+
+    @Override
+    public Pair<Integer, Integer> demanarDimensionsTaulell() {
+        return null;
     }
 
     @Override

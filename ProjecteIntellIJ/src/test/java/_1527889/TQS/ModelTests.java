@@ -46,6 +46,28 @@ public class ModelTests {
     }
 
     @Test
+    void TestSetGetDemanarCasellaNoValida(){
+        ModelMock mm = new ModelMock();
+        Queue<Pair<Integer, Integer>> l = new LinkedList<>();
+        l.add(new Pair<Integer,Integer>(1,1));
+        l.add(new Pair<Integer,Integer>(2,1));
+        l.add(new Pair<Integer,Integer>(1,2));
+        l.add(new Pair<Integer,Integer>(3,3));
+        l.add(new Pair<Integer,Integer>(3,4));
+        l.add(new Pair<Integer,Integer>(4,3));
+        l.add(new Pair<Integer,Integer>(5,3));
+
+        mm.setListOfNextCasella(new LinkedList<>(l));
+
+        for(Pair<Integer,Integer> p : l){
+            Pair<Integer,Integer> r = mm.demanarCasella();
+            assertEquals(p.getValue0(),r.getValue0());
+            assertEquals(p.getValue1(),r.getValue1());
+        }
+    }
+
+
+    @Test
     void TestSetGetDemanarAccio(){
         ModelMock mm = new ModelMock();
         Queue<Integer> l = new LinkedList<>();

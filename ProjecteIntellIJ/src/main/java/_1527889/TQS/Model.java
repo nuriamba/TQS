@@ -4,6 +4,11 @@ import org.javatuples.Pair;
 
 public class Model implements IModel{
     @Override
+    public Pair<Integer, Integer> demanarDimensionsTaulell() {
+        return null;
+    }
+
+    @Override
     public String demanarDificultat() {
         return null;
     }
