@@ -9,7 +9,7 @@ public class ModelMock implements IModel{
     String dif;
     List<Pair<Integer,Integer>> targetInputs;
 
-    private void setTargetDificultat(String s){}
+    public void setTargetDificultat(String s){}
 
     @Override
     public String demanarDificultat() {
