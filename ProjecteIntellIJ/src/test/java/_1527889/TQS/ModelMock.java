@@ -16,11 +16,11 @@ public class ModelMock implements IModel{
     }
 
     public void setListOfNextCasella(List<Pair<Integer,Integer>> l){
-
+        targetInputs = l;
     }
 
     public void setListOfNextActions(List<Integer> l){
-
+        targetActions = l;
     }
 
     @Override
@@ -30,11 +30,15 @@ public class ModelMock implements IModel{
 
     @Override
     public int demanarAccio() {
-        return 0;
+        int r = targetActions.get(0);
+        targetActions.remove(0);
+        return r;
     }
 
     @Override
     public Pair<Integer, Integer> demanarCasella() {
-        return null;
+        Pair<Integer, Integer> r = targetInputs.get(0);
+        targetInputs.remove(0);
+        return r;
     }
 }
