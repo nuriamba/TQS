@@ -6,14 +6,17 @@ import java.util.List;
 
 //La utilitzarem per fingir certs inputs del usuari per a poder fer bons testos.
 public class ModelMock implements IModel{
-    String dif;
+    String dif = null;
     List<Pair<Integer,Integer>> targetInputs;
 
-    public void setTargetDificultat(String s){}
+    public void setTargetDificultat(String s){
+        //no comprovem si el string es vàlid o no pk no es introduit per l'usuari, com és el mock, és introduit pel programador
+        dif = s;
+    }
 
     @Override
     public String demanarDificultat() {
-        return null;
+        return dif;
     }
 
     @Override

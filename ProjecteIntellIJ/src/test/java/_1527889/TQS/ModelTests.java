@@ -8,7 +8,7 @@ public class ModelTests {
 
     @ParameterizedTest
     @ValueSource(strings = {"facil","mitja","dificil"})
-    void TestSetGetTargetDificulty(String t){
+    void TestSetGetTargetDificultyMock(String t){
         ModelMock mm = new ModelMock();
         mm.setTargetDificultat(t);
         assertEquals(t, mm.demanarDificultat());
