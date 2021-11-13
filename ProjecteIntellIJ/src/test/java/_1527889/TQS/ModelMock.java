@@ -10,6 +10,16 @@ public class ModelMock implements IModel{
     private String dif = null;
     private Queue<Pair<Integer,Integer>> targetInputs;
     private Queue<Integer> targetActions;
+    private int n;
+    private int m;
+
+    public int getM() {
+        return 0;
+    }
+
+    public int getN() {
+        return 0;
+    }
 
     public ModelMock(){
 

@@ -1,13 +1,18 @@
 package _1527889.TQS;
 
 
+import org.javatuples.Pair;
 import org.javatuples.Quartet;
 import org.javatuples.Triplet;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -78,6 +83,44 @@ class PractiquesApplicationTests {
 		Tauler t = q.getValue0();
 		int r = t.open(q.getValue1(),q.getValue2());
 		assert(r>= -1 && r < 9);
+	}
+
+	@ParameterizedTest
+	@CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
+	void TestIniciacioControladorModel(int n, int m) {
+		ModelMock mm = new ModelMock();
+		Queue<Pair<Integer,Integer>> q = new LinkedList<>();
+		q.add(new Pair<>(n,m));
+		mm.setListOfNextCasella(q);
+		Pair<Integer, Integer> d = mm.demanarDimensionsTaulell();
+		Tauler t = new Tauler(d.getValue0(), d.getValue1());
+
+		assertEquals(t.getN(), n);
+		assertEquals(t.getM(), m);
+		assertEquals(mm.getN(), n);
+		assertEquals(mm.getM(), m);
+	}
+	//White box, condition coverage.
+	@ParameterizedTest
+	@CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
+	void TestIniciacioControladorModelNoValid(int n, int m) {
+		ModelMock mm = new ModelMock();
+		Queue<Pair<Integer,Integer>> q = new LinkedList<>();
+
+		q.add(new Pair<>(3,-2));
+		q.add(new Pair<>(-3,-2));
+		q.add(new Pair<>(-3, 2));
+		q.add(new Pair<>(0,0));
+		q.add(new Pair<>(n,m));
+
+		mm.setListOfNextCasella(q);
+		Pair<Integer, Integer> d = mm.demanarDimensionsTaulell();
+		Tauler t = new Tauler(d.getValue0(), d.getValue1());
+
+		assertEquals(t.getN(), n);
+		assertEquals(t.getM(), m);
+		assertEquals(mm.getN(), n);
+		assertEquals(mm.getM(), m);
 	}
 
 }
