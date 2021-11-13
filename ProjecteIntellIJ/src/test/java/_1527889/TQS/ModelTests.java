@@ -64,4 +64,32 @@ public class ModelTests {
             assertEquals(r,p);
         }
     }
+
+    @Test
+    void TestSetGetDemanarAccioNoValida(){
+        ModelMock mm = new ModelMock();
+        Queue<Integer> l = new LinkedList<>();
+        l.add(4);
+        l.add(5);
+        l.add(6);
+        l.add(7);
+        l.add(ModelMock.MARCAR);
+        l.add(7);
+        l.add(6);
+        l.add(ModelMock.OBRIR);
+        l.add(7);
+        l.add(ModelMock.SORTIR);
+
+        Queue<Integer> expected = new LinkedList<Integer>();
+        expected.add(ModelMock.MARCAR);
+        expected.add(ModelMock.OBRIR);
+        expected.add(ModelMock.SORTIR);
+
+        mm.setListOfNextActions(new LinkedList<>(l));
+
+        for(Integer p : l){
+            Integer r = mm.demanarAccio();
+            assertEquals(r,expected.poll());
+        }
+    }
 }
