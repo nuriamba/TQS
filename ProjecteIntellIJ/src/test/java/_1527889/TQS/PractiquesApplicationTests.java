@@ -126,7 +126,7 @@ class PractiquesApplicationTests {
 	}
 
 	@ParameterizedTest
-	@CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
+	@CsvSource(value = {"8,8","16,16","16,30","2,3","100,100","400,400"})
 	void TestIniciacioControladorModelCasellas(int n, int m) {
 		ModelMock mm = new ModelMock();
 

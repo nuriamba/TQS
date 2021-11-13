@@ -79,6 +79,17 @@ public class ModelMock implements IModel{
 
     @Override
     public Pair<Integer, Integer> demanarCasella() {
-        return targetInputs.poll();
+        Pair<Integer, Integer> input = targetInputs.poll();
+        int _n = input.getValue0();
+        int _m = input.getValue1();
+        boolean valid = _n >= 0 && _n < n && _m >= 0 && _m < m;
+
+        while (!valid){
+            input = targetInputs.poll();
+            _n = input.getValue0();
+            _m = input.getValue1();
+            valid = _n >= 0 && _n < n && _m >= 0 && _m < m;
+        }
+        return input;
     }
 }
