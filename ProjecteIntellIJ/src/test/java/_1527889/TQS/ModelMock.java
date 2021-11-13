@@ -14,18 +14,14 @@ public class ModelMock implements IModel{
     private int m;
 
     public int getM() {
-        return 0;
+        return m;
     }
 
     public int getN() {
-        return 0;
+        return n;
     }
 
     public ModelMock(){
-
-    }
-
-    public ModelMock(int n, int m){
 
     }
 
@@ -44,7 +40,20 @@ public class ModelMock implements IModel{
 
     @Override
     public Pair<Integer, Integer> demanarDimensionsTaulell() {
-        return null;
+        Pair<Integer, Integer> input = targetInputs.poll();
+        int _n = input.getValue0();
+        int _m = input.getValue1();
+        boolean valid = _n >= 0 && _m >= 0 ;
+
+        while (!valid){
+            input = targetInputs.poll();
+            _n = input.getValue0();
+            _m = input.getValue1();
+            valid = _n > 0 && _m > 0 ;
+        }
+        n = _n;
+        m = _m;
+        return input;
     }
 
     @Override

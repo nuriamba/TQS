@@ -110,7 +110,9 @@ class PractiquesApplicationTests {
 		q.add(new Pair<>(3,-2));
 		q.add(new Pair<>(-3,-2));
 		q.add(new Pair<>(-3, 2));
-		q.add(new Pair<>(0,0));
+		q.add(new Pair<>(0, 2));
+		q.add(new Pair<>(-3, 0));
+		q.add(new Pair<>(0,0));//Valor frontera
 		q.add(new Pair<>(n,m));
 
 		mm.setListOfNextCasella(q);
