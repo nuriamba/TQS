@@ -3,13 +3,14 @@ package _1527889.TQS;
 import org.javatuples.Pair;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Queue;
 
 //La utilitzarem per fingir certs inputs del usuari per a poder fer bons testos.
 public class ModelMock implements IModel{
-    private String dif = null;
     private Queue<Pair<Integer,Integer>> targetInputs;
     private Queue<Integer> targetActions;
+    private Queue<String> dificultats;
     private int n;
     private int m;
 
@@ -25,9 +26,8 @@ public class ModelMock implements IModel{
 
     }
 
-    public void setTargetDificultat(String s){
-        //no comprovem si el string es vàlid o no pk no es introduit per l'usuari, com és el mock, és introduit pel programador
-        dif = s;
+    public void setTargetDificultat(Queue<String> s){
+        dificultats = s;
     }
 
     public void setListOfNextCasella(Queue<Pair<Integer,Integer>> l){
@@ -58,7 +58,14 @@ public class ModelMock implements IModel{
 
     @Override
     public String demanarDificultat() {
-        return dif;
+        String d = dificultats.poll();
+        boolean valid = Objects.equals(d, "facil") || Objects.equals(d, "mitja") || Objects.equals(d, "dificil");
+        while (!valid){
+            d = dificultats.poll();
+            valid = Objects.equals(d, "facil") || Objects.equals(d, "mitja") || Objects.equals(d, "dificil");
+
+        }
+        return d;
     }
 
     @Override

@@ -47,8 +47,7 @@ public class Tauler {
         return rand;
     }
     public void setDificulty(String d){
-        if(Objects.equals(d, "facil") || Objects.equals(d, "mitja") || Objects.equals(d, "dificil"))
-            dificulty = d;
+        dificulty = d;
     }
     public String getDificulty(){
         return dificulty;

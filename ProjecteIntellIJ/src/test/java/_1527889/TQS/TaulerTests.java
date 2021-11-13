@@ -41,40 +41,7 @@ public class TaulerTests {
         assertSame(mock, t.getRand());
     }
 
-    //Caixa negra, particions equivalents: dificultat acceptada, dificultat no valida.
-    @ParameterizedTest
-    @ValueSource(strings = {"facil","dificil","mitja"})
-    void TestSetGetDificultyCasBase(String d){
-        Tauler t = new Tauler(3,3);
-        t.setDificulty(d);
-        assertEquals(t.getDificulty(),d);
-    }
-    @Test
-    void TestSetGetDificultyCasNoVaild(){
-        Tauler t = new Tauler(3,3);
-        t.setDificulty("qwerwe");
-        assertNull(t.getDificulty());
-    }
 
-    //Test caixa blanca, condition coverage
-    @Test
-    void TestSetGetDificultyConditionCoverage(){
-        Tauler t = new Tauler(3,3);
-        t.setDificulty("qwerwe");
-        assertNull(t.getDificulty());
-
-        Tauler t1 = new Tauler(3,3);
-        t1.setDificulty("facil");
-        assertEquals(t1.getDificulty(), "facil");
-
-        Tauler t2 = new Tauler(3,3);
-        t2.setDificulty("dificil");
-        assertEquals(t2.getDificulty(), "dificil");
-
-        Tauler t3 = new Tauler(3,3);
-        t3.setDificulty("mitja");
-        assertEquals(t3.getDificulty(), "mitja");
-    }
 
 
     //Caixa negra

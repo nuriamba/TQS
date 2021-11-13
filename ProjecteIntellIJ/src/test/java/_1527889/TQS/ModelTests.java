@@ -1,33 +1,56 @@
 package _1527889.TQS;
 
 import org.javatuples.Pair;
-import org.javatuples.Quartet;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class ModelTests {
-
     //Tests que comprovam que els mock funciona adequadament
 
+    //Caixa negra, particions equivalents: dificultat acceptada, dificultat no valida.
     @ParameterizedTest
-    @ValueSource(strings = {"facil","mitja","dificil"})
-    void TestSetGetTargetDificultyMock(String t){
+    @ValueSource(strings = {"facil","dificil","mitja"})
+    void TestSetGetDificultyCasBase(String d){
         ModelMock mm = new ModelMock();
-        mm.setTargetDificultat(t);
-        assertEquals(t, mm.demanarDificultat());
+        Queue<String> l= new LinkedList<>();
+        l.add(d);
+        mm.setTargetDificultat(l);
+        assertEquals(mm.demanarDificultat(),d);
+    }
+
+    //Test caixa blanca, condition coverage
+    @Test
+    void TestSetGetDificultyConditionCoverage(){
+        ModelMock mm = new ModelMock();
+        Queue<String> l= new LinkedList<>();
+        mm.setTargetDificultat(l);
+        l.add("qwerwe");
+        l.add("facil");
+        assertEquals(mm.demanarDificultat(), "facil");
+
+        l.add("facil");
+        assertEquals(mm.demanarDificultat(), "facil");
+
+        l.add("dificil");
+        assertEquals(mm.demanarDificultat(), "dificil");
+
+        l.add("mitja");
+        assertEquals(mm.demanarDificultat(), "mitja");
     }
 
     @Test
     void TestSetGetDemanarCasella(){
         ModelMock mm = new ModelMock();
         Queue<Pair<Integer, Integer>> l = new LinkedList<>();
+
+        mm.setListOfNextCasella(l);
+        l.add(new Pair<Integer,Integer>(10,10));
+        mm.demanarDimensionsTaulell();
         l.add(new Pair<Integer,Integer>(1,1));
         l.add(new Pair<Integer,Integer>(2,1));
         l.add(new Pair<Integer,Integer>(1,2));
@@ -49,6 +72,11 @@ public class ModelTests {
     void TestSetGetDemanarCasellaNoValida(){
         ModelMock mm = new ModelMock();
         Queue<Pair<Integer, Integer>> l = new LinkedList<>();
+
+        mm.setListOfNextCasella(l);
+        l.add(new Pair<Integer,Integer>(10,10));
+        mm.demanarDimensionsTaulell();
+
         l.add(new Pair<Integer,Integer>(1,1));
         l.add(new Pair<Integer,Integer>(2,1));
         l.add(new Pair<Integer,Integer>(1,2));
