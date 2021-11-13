@@ -80,16 +80,16 @@ public class ModelTests {
         l.add(7);
         l.add(ModelMock.SORTIR);
 
-        Queue<Integer> expected = new LinkedList<Integer>();
+        Queue<Integer> expected = new LinkedList<>();
         expected.add(ModelMock.MARCAR);
         expected.add(ModelMock.OBRIR);
         expected.add(ModelMock.SORTIR);
 
         mm.setListOfNextActions(new LinkedList<>(l));
 
-        for(Integer p : l){
+        for(Integer p : expected){
             Integer r = mm.demanarAccio();
-            assertEquals(r,expected.poll());
+            assertEquals(r,p);
         }
     }
 }

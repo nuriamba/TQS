@@ -31,7 +31,18 @@ public class ModelMock implements IModel{
 
     @Override
     public int demanarAccio() {
-        return targetActions.poll();
+        int input = targetActions.poll();
+        boolean valid = false;
+        if(input == Model.MARCAR || input == Model.OBRIR || input == Model.SORTIR)
+            valid = true;
+
+        while (!valid){
+            input = targetActions.poll();
+            if(input == Model.MARCAR || input == Model.OBRIR || input == Model.SORTIR)
+                valid = true;
+        }
+
+        return input;
     }
 
     @Override
