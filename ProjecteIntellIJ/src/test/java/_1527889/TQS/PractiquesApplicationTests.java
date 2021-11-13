@@ -125,4 +125,63 @@ class PractiquesApplicationTests {
 		assertEquals(mm.getM(), m);
 	}
 
+	@ParameterizedTest
+	@CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
+	void TestIniciacioControladorModelCasellas(int n, int m) {
+		ModelMock mm = new ModelMock();
+
+		Queue<Pair<Integer,Integer>> dimensions = new LinkedList<>();
+		dimensions.add(new Pair<>(n,m));
+		mm.setListOfNextCasella(dimensions);
+		Pair<Integer, Integer> d = mm.demanarDimensionsTaulell();
+		Tauler t = new Tauler(d.getValue0(), d.getValue1());
+
+		Queue<Pair<Integer,Integer>> q = new LinkedList<>();
+		q.add(new Pair<>(3,-2));
+		q.add(new Pair<>(-3,-2));
+		q.add(new Pair<>(1, 2));
+		q.add(new Pair<>(-3, 2));
+		q.add(new Pair<>(0, 2));
+		q.add(new Pair<>(-3, 0));
+		q.add(new Pair<>(n,m));//Valor frontera
+		q.add(new Pair<>(0,0));//Valor frontera
+		mm.setListOfNextCasella(q);
+
+		Queue<Pair<Integer,Integer>> expected = new LinkedList<>();
+		expected.add(new Pair<>(1, 2));;
+		expected.add(new Pair<>(0,2));
+		expected.add(new Pair<>(0,0));
+
+		for(Pair<Integer,Integer> p : expected){
+			Pair<Integer,Integer> r = mm.demanarCasella();
+			assertEquals(p.getValue0(),r.getValue0());
+			assertEquals(p.getValue1(),r.getValue1());
+		}
+	}
+
+	@Test
+	void TestPartidaTaulellPetit() {
+		ModelMock mm = new ModelMock();
+		Queue<Pair<Integer,Integer>> dimensions = new LinkedList<>();
+
+		dimensions.add(new Pair<>(3,-2));
+		dimensions.add(new Pair<>(0,0));
+		dimensions.add(new Pair<>(8,8));
+		mm.setListOfNextCasella(dimensions);
+		Pair<Integer, Integer> d = mm.demanarDimensionsTaulell();
+		Tauler t = new Tauler(d.getValue0(), d.getValue1());
+		t.setDificulty("facil");
+
+		RandomMock rm = new RandomMock();
+		boolean[][] mat = {{false, false, false, false, false, false},
+							{false, false, false, false, false, false},
+							{false, false, false, false, false, false},
+							{false, false, false, false, false, false}};
+		rm.setReturnMatrix(mat);
+		//TODO
+
+
+	}
+
+
 }
