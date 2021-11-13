@@ -58,7 +58,7 @@ public class Tauler {
             tauler = mat;
     }
     public void setCasellaMarcada(int x, int y){
-
+        tauler[x][y] = Tauler.CASELLA_MARCADA;
     }
     public void generateBombs(){
         if(dificulty != null)
@@ -88,7 +88,7 @@ public class Tauler {
     }
 
     public int obre_rec(int x, int y) {
-        if(tauler[x][y] == Tauler.TANCAT){
+        if(tauler[x][y] != Tauler.CASELLA_OBERTA){
             int n = open(x,y);
             if(n == 0){
                 tauler[x][y] = Tauler.CASELLA_OBERTA;
