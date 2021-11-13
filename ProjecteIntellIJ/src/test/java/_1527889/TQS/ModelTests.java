@@ -14,6 +14,8 @@ import java.util.Queue;
 import static org.junit.jupiter.api.Assertions.*;
 public class ModelTests {
 
+    //Tests que comprovam que els mock funciona adequadament
+
     @ParameterizedTest
     @ValueSource(strings = {"facil","mitja","dificil"})
     void TestSetGetTargetDificultyMock(String t){

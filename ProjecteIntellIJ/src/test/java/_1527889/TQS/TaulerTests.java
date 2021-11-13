@@ -249,5 +249,47 @@ public class TaulerTests {
 
     }
 
+    @Test
+    void TestCasellaMarcada(){
+        boolean[][] mat = { {true, false, false, false},
+                {true, false, false, false},
+                {true, false, false, false}};
+        RandomMock randomMockRandom =new RandomMock();
+        randomMockRandom.setReturnMatrix(mat);
+        Tauler tauler=new Tauler(mat.length, mat[0].length);
+        tauler.setDificulty("facil");
+        tauler.setRand(randomMockRandom);
+        tauler.generateBombs();
 
+        tauler.setCasellaMarcada(2,0);
+        tauler.setCasellaMarcada(1,0);
+        tauler.setCasellaMarcada(1,2);
+        char p = Tauler.CASELLA_MARCADA;
+        char t = Tauler.TANCAT;
+        char[][] expected = {   {t, t, t, t},
+                {p, t, p, t},
+                {p, t, t, t}};
+
+        char[][] res= tauler.getVista();
+        for(int i=0;i<3;i++){
+            for(int j=0;j<4;j++){
+                assert(expected[i][j]==res[i][j]);
+            }
+        }
+
+        tauler.obre_rec(1,2);
+        char o = Tauler.CASELLA_OBERTA;
+
+        char[][] expected2 = {   {t, '2', o, o},
+                {p, '3', o, o},
+                {p, '2', o, o}};
+
+        char[][] res2= tauler.getVista();
+        for(int i=0;i<3;i++){
+            for(int j=0;j<4;j++){
+                assert(expected2[i][j]==res2[i][j]);
+            }
+        }
+
+    }
 }

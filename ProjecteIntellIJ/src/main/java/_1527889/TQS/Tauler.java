@@ -12,6 +12,7 @@ public class Tauler {
     public static final int SUCCESS = 1;
     public static final char TANCAT = 'X';
     public static final char CASELLA_OBERTA = '0';
+    public static final char CASELLA_MARCADA = 'P';
 
     private int i;
     private int j;
@@ -52,6 +53,13 @@ public class Tauler {
     public String getDificulty(){
         return dificulty;
     };
+    public void setVista(char[][] mat) {
+        if(mat.length == i && mat[0].length == j)
+            tauler = mat;
+    }
+    public void setCasellaMarcada(int x, int y){
+
+    }
     public void generateBombs(){
         if(dificulty != null)
             matrix = rand.generateRandomMatrix(i,j,dificulty);
@@ -59,7 +67,6 @@ public class Tauler {
             matrix = rand.generateRandomMatrix(i,j);
     }
 
-    //Faltarà fer la recursivitat
     public int open(int n, int m){
         //asumim que els valors de n i m són correctes. Ho testejarà la vista
 
@@ -121,8 +128,5 @@ public class Tauler {
         return 0;
     }
 
-    public void setVista(char[][] mat) {
-        if(mat.length == i && mat[0].length == j)
-            tauler = mat;
-    }
+
 }
