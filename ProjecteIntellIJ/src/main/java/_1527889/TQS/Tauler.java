@@ -66,6 +66,10 @@ public class Tauler {
             matrix = rand.generateRandomMatrix(i,j);
     }
 
+    public boolean hemGuanyat(){
+        return false;
+    }
+
     public int open(int n, int m){
         //asumim que els valors de n i m són correctes. Ho testejarà la vista
 

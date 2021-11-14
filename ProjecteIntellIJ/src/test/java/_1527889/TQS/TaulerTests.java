@@ -259,4 +259,40 @@ public class TaulerTests {
         }
 
     }
+
+    //White box decision coverage
+    @Test
+    void TestHemGuanyat(){
+        char o = Tauler.CASELLA_OBERTA;
+        char p = Tauler.CASELLA_MARCADA;
+        char t = Tauler.TANCAT;
+        boolean[][] mat = { {true, false, false, false},
+                {true, false, false, false},
+                {true, false, false, false}};
+
+        char[][] vista_guanyadora = {
+                {p,'2',o,o},
+                {p,'3',o,o},
+                {p,'2',o,o},
+        };
+        // Considerem que per guanyar s'han de tenir les bombes marcades.
+        char[][] vista_perdedora = {
+                {o,'2',o,o},
+                {p,'3',o,o},
+                {p,'2',o,o},
+        };
+        RandomMock randomMockRandom =new RandomMock();
+        randomMockRandom.setReturnMatrix(mat);
+        Tauler tauler=new Tauler(mat.length, mat[0].length);
+        tauler.setDificulty("facil");
+        tauler.setRand(randomMockRandom);
+        tauler.generateBombs();
+
+        tauler.setVista(vista_guanyadora);
+        assert(tauler.hemGuanyat());
+
+        tauler.setVista(vista_perdedora);
+        assert(!tauler.hemGuanyat());
+
+    }
 }
