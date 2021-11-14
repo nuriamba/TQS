@@ -14,14 +14,41 @@ public class Model implements IModel{
     @Override
     public Pair<Integer, Integer> demanarDimensionsTaulell() {
         System.out.println("Introdueix les dimensions del taulell (2 números)");
-        Pair<Integer, Integer> input = new Pair<>(s.nextInt(),s.nextInt());
+        int in1 = -1;
+        int in2 = -1;
+
+        try {
+            in1 = s.nextInt();
+        }
+        catch(Exception e) {
+            s.nextLine();
+        }
+        try {
+            in2 = s.nextInt();
+        }
+        catch(Exception e) {
+            s.nextLine();
+        }
+        Pair<Integer, Integer> input = new Pair<>(in1, in2);
         int _n = input.getValue0();
         int _m = input.getValue1();
         boolean valid = _n >= 0 && _m >= 0 ;
 
         while (!valid){
             System.out.println("Nombres no vàlids, torna-ho a intentar siusplau");
-            input = new Pair<>(s.nextInt(),s.nextInt());
+            try {
+                in1 = s.nextInt();
+            }
+            catch(Exception e) {
+                s.nextLine();
+            }
+            try {
+                in2 = s.nextInt();
+            }
+            catch(Exception e) {
+                s.nextLine();
+            }
+            input = new Pair<>(in1, in2);
             _n = input.getValue0();
             _m = input.getValue1();
             valid = _n > 0 && _m > 0 ;
@@ -49,16 +76,25 @@ public class Model implements IModel{
     @Override
     public int demanarAccio() {
         System.out.println("Què vols fer? obrir (0), marcar (1) o sortir (2)");
-        int input = s.nextInt();
-        boolean valid = false;
-        if(input == Model.MARCAR || input == Model.OBRIR || input == Model.SORTIR)
-            valid = true;
+        int input = -1;
+        try {
+             input = s.nextInt();
+        }
+        catch(Exception e) {
+            s.nextLine();
+        }
+
+        boolean valid = input == Model.MARCAR || input == Model.OBRIR || input == Model.SORTIR;
 
         while (!valid){
             System.out.println("L'acció introduida no és vàlida, torna-hi si us plau.");
-            input = s.nextInt();
-            if(input == Model.MARCAR || input == Model.OBRIR || input == Model.SORTIR)
-                valid = true;
+            try {
+                input = s.nextInt();
+            }
+            catch(Exception e) {
+                s.nextLine();
+            }
+            valid = input == Model.MARCAR || input == Model.OBRIR || input == Model.SORTIR;
         }
 
         return input;
@@ -67,14 +103,42 @@ public class Model implements IModel{
     @Override
     public Pair<Integer, Integer> demanarCasella() {
         System.out.println("Coordenades de la casella a la que aplicar l'acció");
-        Pair<Integer, Integer> input = new Pair<>(s.nextInt(), s.nextInt());
+        int in1 = -1;
+        int in2 = -1;
+
+        try {
+            in1 = s.nextInt();
+        }
+        catch(Exception e) {
+            s.nextLine();
+        }
+        try {
+            in2 = s.nextInt();
+        }
+        catch(Exception e) {
+            s.nextLine();
+        }
+
+        Pair<Integer, Integer> input = new Pair<>(in1, in2);
         int _n = input.getValue0();
         int _m = input.getValue1();
         boolean valid = _n >= 0 && _n < n && _m >= 0 && _m < m;
 
         while (!valid){
             System.out.println("Coordenades no vàlides, torna-ho a provar");
-            input =  new Pair<>(s.nextInt(), s.nextInt());
+            try {
+                in1 = s.nextInt();
+            }
+            catch(Exception e) {
+                s.nextLine();
+            }
+            try {
+                in2 = s.nextInt();
+            }
+            catch(Exception e) {
+                s.nextLine();
+            }
+            input = new Pair<>(in1, in2);
             _n = input.getValue0();
             _m = input.getValue1();
             valid = _n >= 0 && _n < n && _m >= 0 && _m < m;

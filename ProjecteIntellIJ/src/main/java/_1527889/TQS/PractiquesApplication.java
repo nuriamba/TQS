@@ -24,7 +24,9 @@ public class PractiquesApplication {
 		System.out.println("-----NORMES-----");
 		System.out.println("- El joc acaba quan tens totes les bombes marcades, i la reta de caselles obertes");
 		System.out.println("- Si obres una casella amb una bomba, perds");
+		System.out.println("- Cada línea s'entén com un input, els inputs separals amb un enter.");
 		System.out.println("- Molta sort!");
+		System.out.println("----------------");
 		Model m = new Model();
 		Vista v = new Vista();
 		Pair<Integer,Integer> dim = m.demanarDimensionsTaulell();
