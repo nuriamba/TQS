@@ -1,5 +1,6 @@
 package _1527889.TQS;
 
+import java.util.Objects;
 import java.util.SplittableRandom;
 
 public class Random implements IRandom{
@@ -20,21 +21,21 @@ public class Random implements IRandom{
          SplittableRandom rd = new SplittableRandom();
 
         boolean[][] mat = new boolean[n][m];
-        if(dificultad == "facil"){
+        if(Objects.equals(dificultad, "facil")){
             for(int i=0;i<n;i++){
                 for(int j=0;j<m;j++){
                     mat[i][j]= rd.nextInt(4) == 0;
                 }
             }
         }
-        else if(dificultad == "mitja"){
+        else if(Objects.equals(dificultad, "mitja")){
             for(int i=0;i<n;i++){
                 for(int j=0;j<m;j++){
                     mat[i][j]= rd.nextInt(3) == 0;
                 }
             }
         }
-        else if(dificultad == "dificil"){
+        else if(Objects.equals(dificultad, "dificil")){
             for(int i=0;i<n;i++){
                 for(int j=0;j<m;j++){
                     mat[i][j]= rd.nextInt(2) == 0;
