@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.LinkedList;
@@ -161,20 +162,20 @@ class PractiquesApplicationTests {
 	}
 
 	@Test
-	void TestPartida() {
+	void TestPartidaGameOver() {
 		ModelMock mm = new ModelMock();
-		Queue<Pair<Integer,Integer>> dimensions = new LinkedList<>();
+		Queue<Pair<Integer, Integer>> dimensions = new LinkedList<>();
 
-		dimensions.add(new Pair<>(3,-2));
-		dimensions.add(new Pair<>(0,0));
-		dimensions.add(new Pair<>(8,8));
+		dimensions.add(new Pair<>(3, -2));
+		dimensions.add(new Pair<>(0, 0));
+		dimensions.add(new Pair<>(8, 8));
 		mm.setListOfNextCasella(dimensions);
 		Pair<Integer, Integer> d = mm.demanarDimensionsTaulell();
 		Tauler ta = new Tauler(d.getValue0(), d.getValue1());
 		ta.setDificulty("facil");
 		RandomMock rm = new RandomMock();
 
-		Queue<Pair<Integer,Integer>> casellas = new LinkedList<>();
+		Queue<Pair<Integer, Integer>> casellas = new LinkedList<>();
 		Queue<Integer> accions = new LinkedList<>();
 		mm.setListOfNextCasella(casellas);
 		mm.setListOfNextActions(accions);
@@ -184,101 +185,113 @@ class PractiquesApplicationTests {
 		char t = Tauler.TANCAT;
 		char o = Tauler.CASELLA_OBERTA;
 		char p = Tauler.CASELLA_MARCADA;
-		boolean[][] mat = {	{f,f,f,f,b,f,b,f},
-							{f,f,f,f,f,f,f,f},
-							{f,f,f,f,f,b,f,f},
-							{f,f,b,f,f,f,f,f},
-							{f,b,f,b,f,f,f,b},
-							{f,b,f,b,f,f,f,f},
-							{f,f,f,f,f,b,b,b},
-							{b,f,f,b,f,b,f,b},};
+		boolean[][] mat = {{f, f, f, f, b, f, b, f},
+				{f, f, f, f, f, f, f, f},
+				{f, f, f, f, f, b, f, f},
+				{f, f, b, f, f, f, f, f},
+				{f, b, f, b, f, f, f, b},
+				{f, b, f, b, f, f, f, f},
+				{f, f, f, f, f, b, b, b},
+				{b, f, f, b, f, b, f, b},};
 
-		char[][] vista = {	{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
+		char[][] vista = {{t, t, t, t, t, t, t, t},
+				{t, t, t, t, t, t, t, t},
+				{t, t, t, t, t, t, t, t},
+				{t, t, t, t, t, t, t, t},
+				{t, t, t, t, t, t, t, t},
+				{t, t, t, t, t, t, t, t},
+				{t, t, t, t, t, t, t, t},
+				{t, t, t, t, t, t, t, t},
 		};
 		rm.setReturnMatrix(mat);
 		ta.setRand(rm);
 		ta.generateBombs();
+
 		assertMatrixEqual(ta.getVista(), vista);
 
-		casellas.add(new Pair<>(0,0));
+		casellas.add(new Pair<>(0, 0));
 		accions.add(Model.OBRIR);
-		assertEquals(mm.demanarAccio(), Model.OBRIR);
-		Pair<Integer, Integer> aux = mm.demanarCasella();
-		ta.obre_rec(aux.getValue0(),aux.getValue1());
 
-		char[][] vista1 = {	{o,o,o,'1',t,t,t,t},
-							{o,o,o,'1',t,t,t,t},
-							{o,'1','1','1',t,t,t,t},
-							{'1','2',t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-		};
-		assertMatrixEqual(ta.getVista(), vista1);
-
-
-		casellas.add(new Pair<>(3,2));
+		casellas.add(new Pair<>(3, 2));
 		accions.add(Model.MARCAR);
-		assertEquals(mm.demanarAccio(), Model.MARCAR);
-		aux = mm.demanarCasella();
-		ta.setCasellaMarcada(aux.getValue0(),aux.getValue1());
 
-
-		casellas.add(new Pair<>(3,3));
+		casellas.add(new Pair<>(3, 3));
 		accions.add(Model.OBRIR);
-		assertEquals(mm.demanarAccio(), Model.OBRIR);
-		aux = mm.demanarCasella();
-		ta.obre_rec(aux.getValue0(),aux.getValue1());
 
-		casellas.add(new Pair<>(3,4));
+		casellas.add(new Pair<>(3, 4));
 		accions.add(Model.OBRIR);
-		assertEquals(mm.demanarAccio(), Model.OBRIR);
-		aux = mm.demanarCasella();
-		ta.obre_rec(aux.getValue0(),aux.getValue1());
 
-		casellas.add(new Pair<>(2,4));
+		casellas.add(new Pair<>(2, 4));
 		accions.add(Model.OBRIR);
-		assertEquals(mm.demanarAccio(), Model.OBRIR);
-		aux = mm.demanarCasella();
-		ta.obre_rec(aux.getValue0(),aux.getValue1());
 
-		casellas.add(new Pair<>(1,4));
+		casellas.add(new Pair<>(1, 4));
 		accions.add(Model.OBRIR);
-		assertEquals(mm.demanarAccio(), Model.OBRIR);
-		aux = mm.demanarCasella();
-		ta.obre_rec(aux.getValue0(),aux.getValue1());
 
-		casellas.add(new Pair<>(0,4));
+		casellas.add(new Pair<>(0, 4));
 		accions.add(Model.MARCAR);
-		assertEquals(mm.demanarAccio(), Model.MARCAR);
-		aux = mm.demanarCasella();
-		ta.setCasellaMarcada(aux.getValue0(),aux.getValue1());
 
-		/*ta.obre_rec(3,4);
-		ta.obre_rec(2,4);
-		ta.obre_rec(1,4);
-		ta.setCasellaMarcada(0,4);*/
+		casellas.add(new Pair<>(0, 5));
+		accions.add(Model.OBRIR);
 
-		char[][] vista2 = {	{o,o,o,'1',p,t,t,t},
-							{o,o,o,'1','2',t,t,t},
-							{o,'1','1','1','1',t,t,t},
-							{'1','2',p,'2','2',t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
-							{t,t,t,t,t,t,t,t},
+		casellas.add(new Pair<>(4, 0));
+		accions.add(Model.OBRIR);
+
+		casellas.add(new Pair<>(4, 1));
+		accions.add(Model.MARCAR);
+
+		casellas.add(new Pair<>(4, 2));
+		accions.add(Model.OBRIR);
+
+		casellas.add(new Pair<>(5, 1));
+		accions.add(Model.MARCAR);
+
+		casellas.add(new Pair<>(5, 0));
+		accions.add(Model.OBRIR);
+
+		casellas.add(new Pair<>(6, 0));
+		accions.add(Model.OBRIR);
+
+		casellas.add(new Pair<>(6, 1));
+		accions.add(Model.OBRIR);
+
+		casellas.add(new Pair<>(7, 0));
+		accions.add(Model.OBRIR);
+
+		//accions.add(Model.SORTIR);
+		Integer accio = mm.demanarAccio();
+		Integer code = Tauler.SUCCESS;
+		while (!accio.equals(Model.SORTIR)) {
+			if (accio.equals(Model.OBRIR)) {
+				Pair<Integer, Integer> c = mm.demanarCasella();
+				code = ta.obre_rec(c.getValue0(), c.getValue1());
+				if (code == Tauler.CASELLA_JA_OBERTA) {//casella oberta}
+				}
+			}
+			if (accio.equals(Model.MARCAR)) {
+				Pair<Integer, Integer> ca = mm.demanarCasella();
+				ta.setCasellaMarcada(ca.getValue0(), ca.getValue1());
+			}
+
+			if (code != Tauler.GAME_OVER) {
+				accio = mm.demanarAccio();
+			} else {
+				//game over
+				accio = Model.SORTIR;
+			}
+
+		}
+		char[][] vista2 = {{o, o, o, '1', p, '2', t, t},
+				{o, o, o, '1', '2', t, t, t},
+				{o, '1', '1', '1', '1', t, t, t},
+				{'1', '2', p, '2', '2', t, t, t},
+				{'2', p, '5', t, t, t, t, t},
+				{'2', p, t, t, t, t, t, t},
+				{'2', '2', t, t, t, t, t, t},
+				{t, t, t, t, t, t, t, t},
 		};
 		assertMatrixEqual(ta.getVista(), vista2);
-	}
 
+	}
 	void assertMatrixEqual(char[][] m1, char[][] m2){
 		//Copiada d'internet. Assumim que no cal testejar-la
 		int n = m1.length;
