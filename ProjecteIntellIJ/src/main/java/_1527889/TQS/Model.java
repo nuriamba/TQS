@@ -2,6 +2,7 @@ package _1527889.TQS;
 
 import org.javatuples.Pair;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 //Aquesta classe no rep tests ja que té els mateixos mètodes que ModelMock però
@@ -32,17 +33,29 @@ public class Model implements IModel{
 
     @Override
     public String demanarDificultat() {
-        return s.nextLine();
+        System.out.println("Quina dificultat desitjes facil, mitja o dificil");
+        String d = s.nextLine();
+        d = s.nextLine();
+        boolean valid = Objects.equals(d, "facil") || Objects.equals(d, "mitja") || Objects.equals(d, "dificil");
+        while (!valid){
+            System.out.println("Dificultat no vàlida, torna a introduir una dificultat sisplau");
+            d = s.nextLine();
+            valid = Objects.equals(d, "facil") || Objects.equals(d, "mitja") || Objects.equals(d, "dificil");
+
+        }
+        return d;
     }
 
     @Override
     public int demanarAccio() {
+        System.out.println("Què vols fer? obrir (0), marcar (1) o sortir (2)");
         int input = s.nextInt();
         boolean valid = false;
         if(input == Model.MARCAR || input == Model.OBRIR || input == Model.SORTIR)
             valid = true;
 
         while (!valid){
+            System.out.println("L'acció introduida no és vàlida, torna-hi si us plau.");
             input = s.nextInt();
             if(input == Model.MARCAR || input == Model.OBRIR || input == Model.SORTIR)
                 valid = true;
