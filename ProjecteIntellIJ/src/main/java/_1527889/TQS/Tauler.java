@@ -67,7 +67,13 @@ public class Tauler {
     }
 
     public boolean hemGuanyat(){
-        return false;
+        for(int k = 0; k<i;k++){
+            for(int l = 0; l<j;l++){
+                if((matrix[k][l] && tauler[k][l] != CASELLA_MARCADA) || tauler[k][l] == TANCAT)
+                    return false;
+            }
+        }
+        return true;
     }
 
     public int open(int n, int m){
