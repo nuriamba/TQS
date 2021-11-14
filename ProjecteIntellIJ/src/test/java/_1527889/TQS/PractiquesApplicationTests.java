@@ -292,6 +292,87 @@ class PractiquesApplicationTests {
 		assertMatrixEqual(ta.getVista(), vista2);
 
 	}
+
+	@Test
+	void TestPartidaGuanyada(){
+		char o = Tauler.CASELLA_OBERTA;
+		char p = Tauler.CASELLA_MARCADA;
+		boolean[][] mat = { {true, false, false, false},
+				{true, false, false, false},
+				{true, false, false, false}};
+
+
+
+		ModelMock mm = new ModelMock();
+		Queue<Pair<Integer, Integer>> dimensions = new LinkedList<>();
+
+		dimensions.add(new Pair<>(3, -2));
+		dimensions.add(new Pair<>(0, 0));
+		dimensions.add(new Pair<>(3, 4));
+		mm.setListOfNextCasella(dimensions);
+		Pair<Integer, Integer> d = mm.demanarDimensionsTaulell();
+		Tauler ta = new Tauler(d.getValue0(), d.getValue1());
+		ta.setDificulty("facil");
+		RandomMock rm = new RandomMock();
+
+		Queue<Pair<Integer, Integer>> casellas = new LinkedList<>();
+		Queue<Integer> accions = new LinkedList<>();
+		mm.setListOfNextCasella(casellas);
+		mm.setListOfNextActions(accions);
+
+		rm.setReturnMatrix(mat);
+		ta.setRand(rm);
+		ta.generateBombs();
+
+		char[][] vista_guanyadora = {
+				{p,'2',o,o},
+				{p,'3',o,o},
+				{p,'2',o,o},
+		};
+
+		casellas.add(new Pair<>(1, 3));
+		accions.add(Model.OBRIR);
+
+		casellas.add(new Pair<>(0, 0));
+		accions.add(Model.MARCAR);
+
+		casellas.add(new Pair<>(1, 0));
+		accions.add(Model.MARCAR);
+
+		casellas.add(new Pair<>(2, 0));
+		accions.add(Model.MARCAR);
+
+		//accions.add(Model.SORTIR);
+		Integer accio = mm.demanarAccio();
+		Integer code = Tauler.SUCCESS;
+		while (!accio.equals(Model.SORTIR)) {
+			if (accio.equals(Model.OBRIR)) {
+				Pair<Integer, Integer> c = mm.demanarCasella();
+				code = ta.obre_rec(c.getValue0(), c.getValue1());
+				if (code == Tauler.CASELLA_JA_OBERTA) {//casella oberta}
+				}
+			}
+			if (accio.equals(Model.MARCAR)) {
+				Pair<Integer, Integer> ca = mm.demanarCasella();
+				ta.setCasellaMarcada(ca.getValue0(), ca.getValue1());
+			}
+
+			if (code != Tauler.GAME_OVER) {
+				if(ta.hemGuanyat()){
+					//Hem guanyat
+					accio = Model.SORTIR;
+				}else{
+					accio = mm.demanarAccio();
+				}
+			} else {
+				//game over
+				accio = Model.SORTIR;
+			}
+
+		}
+		assertMatrixEqual(ta.getVista(), vista_guanyadora);
+
+	}
 	void assertMatrixEqual(char[][] m1, char[][] m2){
 		//Copiada d'internet. Assumim que no cal testejar-la
 		int n = m1.length;
