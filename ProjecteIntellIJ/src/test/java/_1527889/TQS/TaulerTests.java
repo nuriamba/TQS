@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TaulerTests {
-    // Test del constructor, mira que las medidas sean las correctas
+    // Test del constructor, mira que las medidas sean las correctas. Caixa negra
     @ParameterizedTest
     @CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
     void TestCreaTauler(int n, int m){
@@ -19,7 +19,7 @@ public class TaulerTests {
         assertEquals(m, t.getM());
     }
 
-    // Test del constructor, mira que el constructor crei bé la matriu de vista
+    // Test del constructor, mira que el constructor crei bé la matriu de vista. Caixa negra
     @ParameterizedTest
     @CsvSource(value = {"8,8","16,16","16,30","1,3","100,100","400,400"})
     void TestCreaTaulerVista(int n, int m){
@@ -40,8 +40,6 @@ public class TaulerTests {
         t.setRand(mock);
         assertSame(mock, t.getRand());
     }
-
-
 
 
     //Caixa negra

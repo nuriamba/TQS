@@ -22,6 +22,17 @@ public class ModelTests {
         mm.setTargetDificultat(l);
         assertEquals(mm.demanarDificultat(),d);
     }
+    //Dificultat no valida
+    @ParameterizedTest
+    @ValueSource(strings = {"qwerer","/|@#~|@#~€€#¬","1234234"})
+    void TestSetGetDificultyCasNoValid(String d){
+        ModelMock mm = new ModelMock();
+        Queue<String> l= new LinkedList<>();
+        l.add(d);
+        l.add("facil");
+        mm.setTargetDificultat(l);
+        assertEquals(mm.demanarDificultat(),"facil");
+    }
 
     //Test caixa blanca, condition coverage
     @Test

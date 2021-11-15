@@ -165,7 +165,7 @@ class PractiquesApplicationTests {
 	void TestPartidaGameOver() {
 		ModelMock mm = new ModelMock();
 		Queue<Pair<Integer, Integer>> dimensions = new LinkedList<>();
-
+		IVista v = new VistaMock();
 		dimensions.add(new Pair<>(3, -2));
 		dimensions.add(new Pair<>(0, 0));
 		dimensions.add(new Pair<>(8, 8));
@@ -256,7 +256,7 @@ class PractiquesApplicationTests {
 
 		casellas.add(new Pair<>(7, 0));
 		accions.add(Model.OBRIR);
-
+		v.print(ta);
 		//accions.add(Model.SORTIR);
 		Integer accio = mm.demanarAccio();
 		Integer code = Tauler.SUCCESS;
@@ -273,6 +273,7 @@ class PractiquesApplicationTests {
 			}
 
 			if (code != Tauler.GAME_OVER) {
+				v.print(ta);
 				accio = mm.demanarAccio();
 			} else {
 				//game over
@@ -305,7 +306,7 @@ class PractiquesApplicationTests {
 
 		ModelMock mm = new ModelMock();
 		Queue<Pair<Integer, Integer>> dimensions = new LinkedList<>();
-
+		IVista v = new VistaMock();
 		dimensions.add(new Pair<>(3, -2));
 		dimensions.add(new Pair<>(0, 0));
 		dimensions.add(new Pair<>(3, 4));
@@ -341,7 +342,7 @@ class PractiquesApplicationTests {
 
 		casellas.add(new Pair<>(2, 0));
 		accions.add(Model.MARCAR);
-
+		v.print(ta);
 		//accions.add(Model.SORTIR);
 		Integer accio = mm.demanarAccio();
 		Integer code = Tauler.SUCCESS;
@@ -362,6 +363,7 @@ class PractiquesApplicationTests {
 					//Hem guanyat
 					accio = Model.SORTIR;
 				}else{
+					v.print(ta);
 					accio = mm.demanarAccio();
 				}
 			} else {

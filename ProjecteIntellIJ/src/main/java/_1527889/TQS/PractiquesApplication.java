@@ -28,7 +28,7 @@ public class PractiquesApplication {
 		System.out.println("- Molta sort!");
 		System.out.println("----------------");
 		Model m = new Model();
-		Vista v = new Vista();
+		IVista v = new Vista();
 		Pair<Integer,Integer> dim = m.demanarDimensionsTaulell();
 		Tauler t = new Tauler(dim.getValue0(), dim.getValue1());
 		t.setRand(new Random());
