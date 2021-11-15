@@ -1,6 +1,7 @@
 package _1527889.TQS;
 
 
+import com.sun.tools.javac.Main;
 import org.javatuples.Pair;
 import org.javatuples.Quartet;
 import org.javatuples.Triplet;
@@ -194,20 +195,9 @@ class PractiquesApplicationTests {
 				{f, f, f, f, f, b, b, b},
 				{b, f, f, b, f, b, f, b},};
 
-		char[][] vista = {{t, t, t, t, t, t, t, t},
-				{t, t, t, t, t, t, t, t},
-				{t, t, t, t, t, t, t, t},
-				{t, t, t, t, t, t, t, t},
-				{t, t, t, t, t, t, t, t},
-				{t, t, t, t, t, t, t, t},
-				{t, t, t, t, t, t, t, t},
-				{t, t, t, t, t, t, t, t},
-		};
 		rm.setReturnMatrix(mat);
 		ta.setRand(rm);
 		ta.generateBombs();
-
-		assertMatrixEqual(ta.getVista(), vista);
 
 		casellas.add(new Pair<>(0, 0));
 		accions.add(Model.OBRIR);
@@ -256,31 +246,7 @@ class PractiquesApplicationTests {
 
 		casellas.add(new Pair<>(7, 0));
 		accions.add(Model.OBRIR);
-		v.print(ta);
-		//accions.add(Model.SORTIR);
-		Integer accio = mm.demanarAccio();
-		Integer code = Tauler.SUCCESS;
-		while (!accio.equals(Model.SORTIR)) {
-			if (accio.equals(Model.OBRIR)) {
-				Pair<Integer, Integer> c = mm.demanarCasella();
-				code = ta.obre_rec(c.getValue0(), c.getValue1());
-				if (code == Tauler.CASELLA_JA_OBERTA) {//casella oberta}
-				}
-			}
-			if (accio.equals(Model.MARCAR)) {
-				Pair<Integer, Integer> ca = mm.demanarCasella();
-				ta.setCasellaMarcada(ca.getValue0(), ca.getValue1());
-			}
 
-			if (code != Tauler.GAME_OVER) {
-				v.print(ta);
-				accio = mm.demanarAccio();
-			} else {
-				//game over
-				accio = Model.SORTIR;
-			}
-
-		}
 		char[][] vista2 = {{o, o, o, '1', p, '2', t, t},
 				{o, o, o, '1', '2', t, t, t},
 				{o, '1', '1', '1', '1', t, t, t},
@@ -290,6 +256,8 @@ class PractiquesApplicationTests {
 				{'2', '2', t, t, t, t, t, t},
 				{t, t, t, t, t, t, t, t},
 		};
+		int ret = PractiquesApplication.mainT(ta,mm,v);
+		assertEquals(ret, Tauler.GAME_OVER);
 		assertMatrixEqual(ta.getVista(), vista2);
 
 	}
@@ -344,34 +312,8 @@ class PractiquesApplicationTests {
 		accions.add(Model.MARCAR);
 		v.print(ta);
 		//accions.add(Model.SORTIR);
-		Integer accio = mm.demanarAccio();
-		Integer code = Tauler.SUCCESS;
-		while (!accio.equals(Model.SORTIR)) {
-			if (accio.equals(Model.OBRIR)) {
-				Pair<Integer, Integer> c = mm.demanarCasella();
-				code = ta.obre_rec(c.getValue0(), c.getValue1());
-				if (code == Tauler.CASELLA_JA_OBERTA) {//casella oberta}
-				}
-			}
-			if (accio.equals(Model.MARCAR)) {
-				Pair<Integer, Integer> ca = mm.demanarCasella();
-				ta.setCasellaMarcada(ca.getValue0(), ca.getValue1());
-			}
-
-			if (code != Tauler.GAME_OVER) {
-				if(ta.hemGuanyat()){
-					//Hem guanyat
-					accio = Model.SORTIR;
-				}else{
-					v.print(ta);
-					accio = mm.demanarAccio();
-				}
-			} else {
-				//game over
-				accio = Model.SORTIR;
-			}
-
-		}
+		int ret = PractiquesApplication.mainT(ta,mm,v);
+		assertEquals(ret, Tauler.SUCCESS);
 		assertMatrixEqual(ta.getVista(), vista_guanyadora);
 
 	}

@@ -9,17 +9,22 @@ public class PractiquesApplication {
 	private IRandom rand;
 
 
-	public static void main(String[] args) throws InterruptedException, IOException {
+	public static void main(String[] args) {
 		//pseudo codigo
 		/*
 		* Iniciamos objetos modelo i objeto vista
 		* Con el modelo pedimos que nos digan dificultad y dimensiones del tablero
 		* Iniciamos el objeto Tablero con los datos recogidos
-		* A la vista le decimos tmb que se inicie (tablero tapado totalmente)
-		* Modelo pide input de que casilla abrir
-		* Tablero abre la casilla. Si el retorno és 0, abrimos las casillas contiguas. Si el retorno és -1 acabamos el juego.
-		* Le damos al objeto vista la lista de casillas que tiene que actualizar
-		*
+		* En bucle
+		* 	Modelo pide accion Abrir, Salir, Marcar
+		* 	Si es salir, acabamos ejecucion
+		* 	Modelo pide la casilla a la que aplicar la accion
+		* 	Si accion -> abrir
+		* 		Tablero abre la casilla. Si el retorno és 0, abrimos las casillas contiguas. Si el retorno és -1 acabamos ejecucion.
+		* 	Si accion -> marcar
+		* 		Marcamos la casilla como Marcada (bomba localizada)
+		* 	Printeamos el estado del teclado
+		*fin Bucle
 		* */
 		System.out.println("-----NORMES-----");
 		System.out.println("- El joc acaba quan tens totes les bombes marcades, i la reta de caselles obertes");
@@ -64,6 +69,39 @@ public class PractiquesApplication {
 			}
 		}
 		System.out.println("Arreveure");
+	}
+
+	public static Integer mainT(Tauler t, IModel m, IVista v){
+		v.print(t);
+		Integer accio = m.demanarAccio();
+		Integer code = Tauler.SUCCESS;
+		while (!accio.equals(Model.SORTIR)) {
+			if (accio.equals(Model.OBRIR)) {
+				Pair<Integer, Integer> c = m.demanarCasella();
+				code = t.obre_rec(c.getValue0(), c.getValue1());
+				if (code == Tauler.CASELLA_JA_OBERTA) {//casella oberta}
+				}
+			}
+			if (accio.equals(Model.MARCAR)) {
+				Pair<Integer, Integer> ca = m.demanarCasella();
+				t.setCasellaMarcada(ca.getValue0(), ca.getValue1());
+			}
+
+			if (code != Tauler.GAME_OVER) {
+				if(t.hemGuanyat()){
+					//Hem guanyat
+					return Tauler.SUCCESS;
+				}else{
+					v.print(t);
+					accio = m.demanarAccio();
+				}
+			} else {
+				//game over
+				return Tauler.GAME_OVER;
+			}
+
+		}
+		return Model.SORTIR;
 	}
 
 }
